@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /administrator
+Sitemap: http://vivadecor.com.vn/sitemap.xml
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+			<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+				<sitemap>
+					<loc>https://vivadecor.com.vn/sitemap-category.xml</loc>
+					<lastmod>2017-04-06T22:46:27+07:00</lastmod>
+				</sitemap>
+				<sitemap>
+					<loc>https://vivadecor.com.vn/sitemap-product.xml</loc>
+					<lastmod>2017-04-06T22:46:27+07:00</lastmod>
+				</sitemap>
+				<sitemap>
+					<loc>https://vivadecor.com.vn/sitemap-news.xml</loc>
+					<lastmod>2017-04-06T22:46:27+07:00</lastmod>
+				</sitemap>
+				<sitemap>
+					<loc>https://vivadecor.com.vn/sitemap-image.xml</loc>
+					<lastmod>2017-04-06T22:46:27+07:00</lastmod>
+				</sitemap>
+			</sitemapindex>

@@ -1,0 +1,42 @@
+.notice-wrap {
+		position: fixed;
+		top: 20px;
+		right: 20px;
+		width: 350px;
+		z-index:10000;
+	}
+
+	* html .notice-wrap {
+		position: absolute;		
+	}
+	 
+	.notice-item {
+		min-height: 60px;
+		background: url(../../../resources/ui_images/lightbox_bg.png);
+		-moz-border-radius: 6px;
+		-webkit-border-radius: 6px;
+		color: #eee;
+		padding: 6px 6px 0 6px;
+		font-family: lucida Grande;
+		font-size: 18px;
+		border: 2px solid #999;
+		display: block;
+		position: relative;
+		margin: 0 0 12px 0;
+		text-align:center;
+
+	}
+
+	.notice-item p {
+		line-height:50px;
+	}
+		
+	.notice-item-close {
+		position: absolute;
+		font-family: Arial;
+		font-size: 12px;
+		font-weight: bold;
+		right: 6px;
+		top: 6px;
+		cursor: pointer;
+	}

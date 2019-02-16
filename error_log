@@ -1,0 +1,205 @@
+[22-May-2015 22:15:41] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/guest/models/menu_model.php on line 102
+[22-May-2015 22:15:43] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/guest/models/menu_model.php on line 102
+[22-May-2015 22:15:44] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/guest/models/menu_model.php on line 102
+[22-May-2015 22:15:45] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/guest/models/menu_model.php on line 102
+[22-May-2015 22:15:45] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/guest/models/menu_model.php on line 102
+[22-May-2015 22:15:45] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/guest/models/menu_model.php on line 102
+[22-May-2015 22:15:45] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/guest/models/menu_model.php on line 102
+[22-May-2015 22:15:46] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/guest/models/menu_model.php on line 102
+[22-May-2015 22:15:46] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/guest/models/menu_model.php on line 102
+[22-May-2015 22:15:46] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/guest/models/menu_model.php on line 102
+[22-May-2015 22:15:46] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/guest/models/menu_model.php on line 102
+[22-May-2015 22:15:46] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/guest/models/menu_model.php on line 102
+[22-May-2015 22:16:51] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/guest/models/menu_model.php on line 102
+[22-May-2015 22:16:51] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/guest/models/menu_model.php on line 102
+[22-May-2015 22:18:38] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/guest/models/menu_model.php on line 102
+[22-May-2015 22:18:40] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/guest/models/menu_model.php on line 102
+[24-May-2015 23:41:13] PHP Fatal error:  Call to undefined method Categories_product_model::Get_Sorting_Channel() in /home/htsbsoft/public_html/camera/application/modules/guest/models/categories_product_model.php on line 261
+[25-May-2015 14:21:03] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:21:17] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:22:33] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:22:35] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:22:36] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:23:11] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:23:13] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:24:08] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 475
+[25-May-2015 14:24:33] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:24:33] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:26:33] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:26:35] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:26:35] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:27:38] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:27:40] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:27:41] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:28:19] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 480
+[25-May-2015 14:28:49] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:28:51] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:28:51] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:29:36] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:30:21] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:30:23] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:30:38] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:31:21] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:31:23] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:31:41] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:31:42] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:33:37] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 475
+[25-May-2015 14:36:07] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:38:20] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:38:22] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:38:23] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:38:23] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:38:24] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:38:24] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:38:24] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:38:24] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:38:25] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:38:25] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 14:38:25] PHP Fatal error:  Call to a member function Get_Sorting_Channel() on a non-object in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 479
+[25-May-2015 16:02:15] PHP Parse error:  syntax error, unexpected ';' in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 480
+[25-May-2015 16:02:17] PHP Parse error:  syntax error, unexpected ';' in /home/htsbsoft/public_html/camera/application/modules/guest/models/products_model.php on line 480
+[26-May-2015 12:43:11] PHP Parse error:  syntax error, unexpected '[' in /home/htsbsoft/public_html/camera/application/modules/administrator/models/products_model.php on line 303
+[26-May-2015 15:50:47] PHP Parse error:  syntax error, unexpected T_VAR, expecting ';' in /home/htsbsoft/public_html/camera/application/modules/administrator/views/products_fast_view.php on line 169
+[26-May-2015 15:53:43] PHP Parse error:  syntax error, unexpected '=' in /home/htsbsoft/public_html/camera/application/modules/administrator/views/products_fast_view.php on line 169
+[26-May-2015 15:53:45] PHP Parse error:  syntax error, unexpected '=' in /home/htsbsoft/public_html/camera/application/modules/administrator/views/products_fast_view.php on line 169
+[26-May-2015 15:53:46] PHP Parse error:  syntax error, unexpected '=' in /home/htsbsoft/public_html/camera/application/modules/administrator/views/products_fast_view.php on line 169
+[26-May-2015 15:53:47] PHP Parse error:  syntax error, unexpected '=' in /home/htsbsoft/public_html/camera/application/modules/administrator/views/products_fast_view.php on line 169
+[26-May-2015 15:54:18] PHP Parse error:  syntax error, unexpected T_VAR in /home/htsbsoft/public_html/camera/application/modules/administrator/views/products_fast_view.php on line 169
+[27-May-2015 07:28:38] PHP Parse error:  syntax error, unexpected ')' in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 321
+[27-May-2015 07:28:44] PHP Parse error:  syntax error, unexpected ')' in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 321
+[27-May-2015 07:28:53] PHP Parse error:  syntax error, unexpected ')' in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 321
+[27-May-2015 07:29:26] PHP Parse error:  syntax error, unexpected '{' in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 337
+[27-May-2015 14:35:32] PHP Fatal error:  Cannot access empty property in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 321
+[27-May-2015 14:39:53] PHP Fatal error:  Cannot access empty property in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 321
+[27-May-2015 14:40:16] PHP Fatal error:  Cannot access empty property in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 321
+[27-May-2015 14:42:03] PHP Fatal error:  Cannot access empty property in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 321
+[27-May-2015 14:42:41] PHP Fatal error:  Cannot access empty property in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 321
+[27-May-2015 14:52:22] PHP Fatal error:  Cannot access empty property in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 321
+[27-May-2015 14:52:40] PHP Fatal error:  Cannot access empty property in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 321
+[27-May-2015 14:52:55] PHP Fatal error:  Cannot access empty property in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 321
+[27-May-2015 14:53:02] PHP Fatal error:  Cannot access empty property in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 321
+[27-May-2015 14:53:16] PHP Fatal error:  Cannot access empty property in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 321
+[27-May-2015 14:54:38] PHP Fatal error:  Cannot access empty property in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 321
+[27-May-2015 07:59:18] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 07:59:31] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 08:00:08] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 08:00:40] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 08:00:44] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 08:16:30] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 08:16:46] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 08:18:32] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 08:19:10] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 08:19:16] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 08:20:23] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 08:21:29] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 08:21:47] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 08:22:50] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 08:22:56] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 08:24:13] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 08:24:46] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 08:36:29] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 08:36:50] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 08:38:13] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 08:46:12] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 08:47:27] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 08:48:44] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 08:51:36] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 08:52:21] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_products_ajaxhandler.php on line 35
+[27-May-2015 15:55:03] PHP Fatal error:  Cannot access empty property in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 321
+[27-May-2015 15:55:39] PHP Fatal error:  Cannot access empty property in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 321
+[28-May-2015 10:34:34] PHP Fatal error:  Cannot access empty property in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 322
+[28-May-2015 10:34:38] PHP Fatal error:  Cannot access empty property in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 322
+[28-May-2015 10:35:45] PHP Fatal error:  Cannot access empty property in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 322
+[28-May-2015 10:37:22] PHP Fatal error:  Cannot access empty property in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 322
+[28-May-2015 10:37:32] PHP Fatal error:  Cannot access empty property in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 322
+[28-May-2015 10:38:25] PHP Fatal error:  Cannot access empty property in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 322
+[28-May-2015 10:38:41] PHP Fatal error:  Cannot access empty property in /home/htsbsoft/public_html/camera/application/core/CMS_BaseController.php on line 322
+[28-May-2015 16:31:40] PHP Parse error:  syntax error, unexpected '<' in /home/htsbsoft/public_html/camera/application/modules/guest/views/main_product1.php on line 146
+[28-May-2015 16:43:29] PHP Parse error:  syntax error, unexpected T_BOOLEAN_AND, expecting ',' or ')' in /home/htsbsoft/public_html/camera/application/modules/guest/views/main_product1.php on line 146
+[28-May-2015 16:53:28] PHP Fatal error:  Call to private method Categories_product_model::Get_top_child_cate() from context 'Guest' in /home/htsbsoft/public_html/camera/application/modules/guest/controllers/guest.php on line 142
+[05-Jun-2015 11:42:06] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/htsbsoft/public_html/camera/application/modules/guest/views/main_index.php on line 141
+[05-Jun-2015 15:24:31] PHP Parse error:  syntax error, unexpected T_ECHO in /home/htsbsoft/public_html/camera/application/modules/administrator/views/products_edit_view.php on line 106
+[05-Jun-2015 15:25:04] PHP Parse error:  syntax error, unexpected ')' in /home/htsbsoft/public_html/camera/application/modules/administrator/views/products_edit_view.php on line 106
+[06-Jun-2015 09:53:58] PHP Fatal error:  Cannot use object of type stdClass as array in /home/htsbsoft/public_html/camera/application/modules/guest/views/includes/top.php on line 67
+[06-Jun-2015 09:53:59] PHP Fatal error:  Cannot use object of type stdClass as array in /home/htsbsoft/public_html/camera/application/modules/guest/views/includes/top.php on line 67
+[06-Jun-2015 09:54:00] PHP Fatal error:  Cannot use object of type stdClass as array in /home/htsbsoft/public_html/camera/application/modules/guest/views/includes/top.php on line 67
+[06-Jun-2015 09:54:00] PHP Fatal error:  Cannot use object of type stdClass as array in /home/htsbsoft/public_html/camera/application/modules/guest/views/includes/top.php on line 67
+[06-Jun-2015 09:54:00] PHP Fatal error:  Cannot use object of type stdClass as array in /home/htsbsoft/public_html/camera/application/modules/guest/views/includes/top.php on line 67
+[17-Jun-2015 13:57:52] PHP Parse error:  syntax error, unexpected T_ELSE in /home/htsbsoft/public_html/camera/application/modules/guest/views/main_news1.php on line 55
+[26-Jun-2015 03:17:23] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting '&' or T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_news_ajaxhandler.php on line 10
+[26-Jun-2015 03:17:42] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting '&' or T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_news_ajaxhandler.php on line 10
+[26-Jun-2015 03:17:57] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting '&' or T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_news_ajaxhandler.php on line 10
+[26-Jun-2015 03:18:18] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting '&' or T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_news_ajaxhandler.php on line 10
+[26-Jun-2015 03:19:50] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting '&' or T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_news_ajaxhandler.php on line 10
+[26-Jun-2015 03:19:58] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting '&' or T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_news_ajaxhandler.php on line 10
+[26-Jun-2015 03:58:50] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting '&' or T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_news_ajaxhandler.php on line 10
+[26-Jun-2015 03:58:57] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting '&' or T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_news_ajaxhandler.php on line 10
+[26-Jun-2015 14:43:35] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting '&' or T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_news_ajaxhandler.php on line 10
+[07-Jul-2015 07:57:34] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting '&' or T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_news_ajaxhandler.php on line 10
+[08-Jul-2015 18:42:17] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting '&' or T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_news_ajaxhandler.php on line 10
+[10-Jul-2015 20:48:47] PHP Parse error:  syntax error, unexpected $end in /home/htsbsoft/public_html/camera/application/modules/administrator/views/news_add_view.php on line 630
+[10-Jul-2015 14:34:06] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting '&' or T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_news_ajaxhandler.php on line 10
+[10-Jul-2015 14:34:12] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting '&' or T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_news_ajaxhandler.php on line 10
+[10-Jul-2015 14:34:45] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting '&' or T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_news_ajaxhandler.php on line 10
+[10-Jul-2015 14:34:50] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting '&' or T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_news_ajaxhandler.php on line 10
+[10-Jul-2015 14:35:29] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting '&' or T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_news_ajaxhandler.php on line 10
+[10-Jul-2015 14:35:32] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting '&' or T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_news_ajaxhandler.php on line 10
+[10-Jul-2015 14:37:41] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting T_FUNCTION in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_news_ajaxhandler.php on line 9
+[10-Jul-2015 14:37:55] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting T_FUNCTION in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_news_ajaxhandler.php on line 9
+[10-Jul-2015 14:38:18] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting T_FUNCTION in /home/htsbsoft/public_html/camera/application/modules/ajaxhandle/controllers/admin_news_ajaxhandler.php on line 9
+[10-Jul-2015 21:45:35] PHP Fatal error:  Call to undefined function gen_slug() in /home/htsbsoft/public_html/camera/application/modules/administrator/models/news_model.php on line 71
+[10-Jul-2015 22:07:29] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting T_FUNCTION in /home/htsbsoft/public_html/camera/application/modules/administrator/models/news_model.php on line 84
+[10-Jul-2015 22:30:18] PHP Parse error:  syntax error, unexpected ',' in /home/htsbsoft/public_html/camera/application/modules/administrator/views/news_edit_view.php on line 127
+[11-Jul-2015 00:34:50] PHP Parse error:  syntax error, unexpected '.' in /home/htsbsoft/public_html/camera/application/modules/guest/views/main_index.php on line 163
+[11-Jul-2015 01:46:03] PHP Parse error:  syntax error, unexpected '}' in /home/htsbsoft/public_html/camera/application/modules/guest/models/categories_product_model.php on line 302
+[11-Jul-2015 01:46:47] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/htsbsoft/public_html/camera/application/modules/guest/models/categories_news_model.php on line 145
+[11-Jul-2015 01:46:49] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/htsbsoft/public_html/camera/application/modules/guest/models/categories_news_model.php on line 145
+[11-Jul-2015 01:47:23] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/htsbsoft/public_html/camera/application/modules/guest/models/categories_news_model.php on line 145
+[11-Jul-2015 01:47:24] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/htsbsoft/public_html/camera/application/modules/guest/models/categories_news_model.php on line 145
+[11-Jul-2015 02:51:06] PHP Parse error:  syntax error, unexpected ')', expecting ',' or ';' in /home/htsbsoft/public_html/camera/application/modules/administrator/views/products_edit_view.php on line 137
+[21-Jul-2015 10:16:40] PHP Fatal error:  Call to undefined method Categories_product_model::ProductsResponsive_categories_recursion() in /home/htsbsoft/public_html/camera/application/modules/guest/models/categories_product_model.php on line 321
+[21-Jul-2015 11:51:00] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/guest/models/categories_product_model.php on line 49
+[21-Jul-2015 11:51:02] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/htsbsoft/public_html/camera/application/modules/guest/models/categories_product_model.php on line 49
+[21-Jul-2015 15:14:52] PHP Parse error:  syntax error, unexpected T_IS_EQUAL in /home/htsbsoft/public_html/camera/application/modules/guest/views/includes/top.php on line 36
+[21-Jul-2015 15:14:52] PHP Parse error:  syntax error, unexpected T_IS_EQUAL in /home/htsbsoft/public_html/camera/application/modules/guest/views/includes/top.php on line 36
+[03-Mar-2017 12:48:29 Asia/Saigon] PHP Parse error:  syntax error, unexpected '7' (T_LNUMBER), expecting variable (T_VARIABLE) or '$' in /home/vcrueemhosting/public_html/vivadecor/application/modules/guest/views/main_index.php on line 547
+[03-Mar-2017 12:48:30 Asia/Saigon] PHP Parse error:  syntax error, unexpected '7' (T_LNUMBER), expecting variable (T_VARIABLE) or '$' in /home/vcrueemhosting/public_html/vivadecor/application/modules/guest/views/main_index.php on line 547
+[03-Mar-2017 12:48:32 Asia/Saigon] PHP Parse error:  syntax error, unexpected '7' (T_LNUMBER), expecting variable (T_VARIABLE) or '$' in /home/vcrueemhosting/public_html/vivadecor/application/modules/guest/views/main_index.php on line 547
+[03-Mar-2017 12:48:33 Asia/Saigon] PHP Parse error:  syntax error, unexpected '7' (T_LNUMBER), expecting variable (T_VARIABLE) or '$' in /home/vcrueemhosting/public_html/vivadecor/application/modules/guest/views/main_index.php on line 547
+[03-Mar-2017 00:33:14 America/Chicago] PHP Parse error:  syntax error, unexpected 'foreach' (T_FOREACH) in /home/vcrueemhosting/public_html/vivadecor/application/modules/ajaxhandle/controllers/client_ajaxhandler.php on line 288
+[03-Mar-2017 00:45:44 America/Chicago] PHP Parse error:  syntax error, unexpected 'foreach' (T_FOREACH) in /home/vcrueemhosting/public_html/vivadecor/application/modules/ajaxhandle/controllers/client_ajaxhandler.php on line 287
+[03-Mar-2017 00:48:51 America/Chicago] PHP Parse error:  syntax error, unexpected 'foreach' (T_FOREACH) in /home/vcrueemhosting/public_html/vivadecor/application/modules/ajaxhandle/controllers/client_ajaxhandler.php on line 287
+[03-Mar-2017 00:49:20 America/Chicago] PHP Parse error:  syntax error, unexpected 'foreach' (T_FOREACH) in /home/vcrueemhosting/public_html/vivadecor/application/modules/ajaxhandle/controllers/client_ajaxhandler.php on line 287
+[03-Mar-2017 15:11:27 Asia/Saigon] PHP Parse error:  syntax error, unexpected '}' in /home/vcrueemhosting/public_html/vivadecor/application/modules/guest/views/main_index.php on line 549
+[03-Mar-2017 15:11:29 Asia/Saigon] PHP Parse error:  syntax error, unexpected '}' in /home/vcrueemhosting/public_html/vivadecor/application/modules/guest/views/main_index.php on line 549
+[03-Mar-2017 15:11:30 Asia/Saigon] PHP Parse error:  syntax error, unexpected '}' in /home/vcrueemhosting/public_html/vivadecor/application/modules/guest/views/main_index.php on line 549
+[03-Mar-2017 15:11:45 Asia/Saigon] PHP Parse error:  syntax error, unexpected '}' in /home/vcrueemhosting/public_html/vivadecor/application/modules/guest/views/main_index.php on line 549
+[03-Mar-2017 15:11:46 Asia/Saigon] PHP Parse error:  syntax error, unexpected '}' in /home/vcrueemhosting/public_html/vivadecor/application/modules/guest/views/main_index.php on line 549
+[11-Mar-2017 01:34:31 America/Chicago] PHP Parse error:  syntax error, unexpected ''" /></li>'' (T_CONSTANT_ENCAPSED_STRING) in /home/vcrueemhosting/public_html/vivadecor/application/libraries/breadcrumb.php on line 168
+[11-Mar-2017 01:34:33 America/Chicago] PHP Parse error:  syntax error, unexpected ''" /></li>'' (T_CONSTANT_ENCAPSED_STRING) in /home/vcrueemhosting/public_html/vivadecor/application/libraries/breadcrumb.php on line 168
+[11-Mar-2017 01:34:34 America/Chicago] PHP Parse error:  syntax error, unexpected ''" /></li>'' (T_CONSTANT_ENCAPSED_STRING) in /home/vcrueemhosting/public_html/vivadecor/application/libraries/breadcrumb.php on line 168
+[11-Mar-2017 01:34:34 America/Chicago] PHP Parse error:  syntax error, unexpected ''" /></li>'' (T_CONSTANT_ENCAPSED_STRING) in /home/vcrueemhosting/public_html/vivadecor/application/libraries/breadcrumb.php on line 168
+[11-Mar-2017 01:34:34 America/Chicago] PHP Parse error:  syntax error, unexpected ''" /></li>'' (T_CONSTANT_ENCAPSED_STRING) in /home/vcrueemhosting/public_html/vivadecor/application/libraries/breadcrumb.php on line 168
+[11-Mar-2017 01:34:35 America/Chicago] PHP Parse error:  syntax error, unexpected ''" /></li>'' (T_CONSTANT_ENCAPSED_STRING) in /home/vcrueemhosting/public_html/vivadecor/application/libraries/breadcrumb.php on line 168
+[11-Mar-2017 01:34:36 America/Chicago] PHP Parse error:  syntax error, unexpected ''" /></li>'' (T_CONSTANT_ENCAPSED_STRING) in /home/vcrueemhosting/public_html/vivadecor/application/libraries/breadcrumb.php on line 168
+[11-Mar-2017 01:34:37 America/Chicago] PHP Parse error:  syntax error, unexpected ''" /></li>'' (T_CONSTANT_ENCAPSED_STRING) in /home/vcrueemhosting/public_html/vivadecor/application/libraries/breadcrumb.php on line 168
+[11-Mar-2017 01:34:37 America/Chicago] PHP Parse error:  syntax error, unexpected ''" /></li>'' (T_CONSTANT_ENCAPSED_STRING) in /home/vcrueemhosting/public_html/vivadecor/application/libraries/breadcrumb.php on line 168
+[11-Mar-2017 01:34:39 America/Chicago] PHP Parse error:  syntax error, unexpected ''" /></li>'' (T_CONSTANT_ENCAPSED_STRING) in /home/vcrueemhosting/public_html/vivadecor/application/libraries/breadcrumb.php on line 168
+[11-Mar-2017 01:34:39 America/Chicago] PHP Parse error:  syntax error, unexpected ''" /></li>'' (T_CONSTANT_ENCAPSED_STRING) in /home/vcrueemhosting/public_html/vivadecor/application/libraries/breadcrumb.php on line 168
+[11-Mar-2017 01:34:39 America/Chicago] PHP Parse error:  syntax error, unexpected ''" /></li>'' (T_CONSTANT_ENCAPSED_STRING) in /home/vcrueemhosting/public_html/vivadecor/application/libraries/breadcrumb.php on line 168
+[11-Mar-2017 01:34:40 America/Chicago] PHP Parse error:  syntax error, unexpected ''" /></li>'' (T_CONSTANT_ENCAPSED_STRING) in /home/vcrueemhosting/public_html/vivadecor/application/libraries/breadcrumb.php on line 168
+[11-Mar-2017 01:34:41 America/Chicago] PHP Parse error:  syntax error, unexpected ''" /></li>'' (T_CONSTANT_ENCAPSED_STRING) in /home/vcrueemhosting/public_html/vivadecor/application/libraries/breadcrumb.php on line 168
+[11-Mar-2017 01:34:41 America/Chicago] PHP Parse error:  syntax error, unexpected ''" /></li>'' (T_CONSTANT_ENCAPSED_STRING) in /home/vcrueemhosting/public_html/vivadecor/application/libraries/breadcrumb.php on line 168
+[11-Mar-2017 01:34:41 America/Chicago] PHP Parse error:  syntax error, unexpected ''" /></li>'' (T_CONSTANT_ENCAPSED_STRING) in /home/vcrueemhosting/public_html/vivadecor/application/libraries/breadcrumb.php on line 168
+[11-Mar-2017 01:34:42 America/Chicago] PHP Parse error:  syntax error, unexpected ''" /></li>'' (T_CONSTANT_ENCAPSED_STRING) in /home/vcrueemhosting/public_html/vivadecor/application/libraries/breadcrumb.php on line 168
+[11-Mar-2017 01:34:42 America/Chicago] PHP Parse error:  syntax error, unexpected ''" /></li>'' (T_CONSTANT_ENCAPSED_STRING) in /home/vcrueemhosting/public_html/vivadecor/application/libraries/breadcrumb.php on line 168
+[11-Mar-2017 01:35:49 America/Chicago] PHP Parse error:  syntax error, unexpected ''" /></li>'' (T_CONSTANT_ENCAPSED_STRING) in /home/vcrueemhosting/public_html/vivadecor/application/libraries/breadcrumb.php on line 168
+[11-Mar-2017 01:35:49 America/Chicago] PHP Parse error:  syntax error, unexpected ''" /></li>'' (T_CONSTANT_ENCAPSED_STRING) in /home/vcrueemhosting/public_html/vivadecor/application/libraries/breadcrumb.php on line 168
+[11-Mar-2017 01:35:49 America/Chicago] PHP Parse error:  syntax error, unexpected ''" /></li>'' (T_CONSTANT_ENCAPSED_STRING) in /home/vcrueemhosting/public_html/vivadecor/application/libraries/breadcrumb.php on line 168
+[11-Mar-2017 18:07:45 Asia/Saigon] PHP Fatal error:  Call to undefined method Sorting_price_model::SortingPrice_delete() in /home/vcrueemhosting/public_html/vivadecor/application/modules/ajaxhandle/controllers/admin_ajaxhandler.php on line 920
+[11-Mar-2017 18:07:52 Asia/Saigon] PHP Fatal error:  Call to undefined method Sorting_price_model::SortingPrice_delete() in /home/vcrueemhosting/public_html/vivadecor/application/modules/ajaxhandle/controllers/admin_ajaxhandler.php on line 920
+[11-Mar-2017 18:08:24 Asia/Saigon] PHP Fatal error:  Call to undefined method Sorting_price_model::SortingPrice_delete() in /home/vcrueemhosting/public_html/vivadecor/application/modules/ajaxhandle/controllers/admin_ajaxhandler.php on line 920
+[11-Mar-2017 18:09:25 Asia/Saigon] PHP Fatal error:  Call to undefined method Sorting_price_model::SortingPrice_delete() in /home/vcrueemhosting/public_html/vivadecor/application/modules/ajaxhandle/controllers/admin_ajaxhandler.php on line 920
+[11-Mar-2017 18:11:26 Asia/Saigon] PHP Fatal error:  Call to undefined method Sorting_price_model::SortingPrice_delete() in /home/vcrueemhosting/public_html/vivadecor/application/modules/ajaxhandle/controllers/admin_ajaxhandler.php on line 920
+[11-Mar-2017 18:11:30 Asia/Saigon] PHP Fatal error:  Call to undefined method Sorting_price_model::SortingPrice_delete() in /home/vcrueemhosting/public_html/vivadecor/application/modules/ajaxhandle/controllers/admin_ajaxhandler.php on line 920
+[11-Mar-2017 18:16:08 Asia/Saigon] PHP Fatal error:  Call to undefined method Sorting_price_model::SortingPrice_delete() in /home/vcrueemhosting/public_html/vivadecor/application/modules/ajaxhandle/controllers/admin_ajaxhandler.php on line 1839

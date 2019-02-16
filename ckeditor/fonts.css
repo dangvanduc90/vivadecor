@@ -1,0 +1,56 @@
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 400;
+	src: url(fonts/Open Sans.woff2) format('truetype');
+	unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
+}
+
+@font-face {
+	font-family: 'Helvetica Neue';
+	src: url('fonts/helveticaneuelight.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'UTM Bienvenue';
+	src: url('fonts/UTM Bienvenue.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'SFUTimesTenRoman';
+	src: url('fonts/SFUTimesTenRoman.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'SFUTimesTenBold';
+	src: url('fonts/SFUTimesTenBold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'UTMAvoBold';
+	src: url('fonts/UTM AvoBold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	src: url('fonts/Roboto.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Roboto Condensed';
+	font-style: normal;
+	font-weight: 400;
+	src: url('fonts/Roboto Condensed.woff2') format('woff2');
+}

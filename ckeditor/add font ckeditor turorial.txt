@@ -1,0 +1,29 @@
+Step 1:
+create folder with name: fonts
+and import your font into that folder
+example: Open Sans.woff2
+
+Step 2:
+create file name: fonts.css
+example content:
+
+@font-face {
+	font-family: 'UTMAvoBold';
+	src: url('fonts/UTM AvoBold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	src: url('fonts/Roboto.woff2') format('woff2');
+}
+
+Step 3:
+add these lines to config.js
+
+	config.contentsCss = 'fonts.css';
+	//the next line add the new font to the combobox in CKEditor
+	config.font_names = 'Open Sans;UTM Bienvenue;SFUTimesTenRoman;SFUTimesTenBold;UTMAvoBold;Roboto;Roboto Condensed;' + config.font_names;
