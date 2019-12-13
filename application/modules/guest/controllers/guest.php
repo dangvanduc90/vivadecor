@@ -1,1752 +1,1778 @@
 <?php
 
-	class Guest extends CMS_BaseController {
+class Guest extends CMS_BaseController
+{
 
 
+    function __construct()
 
-		function __construct()
+    {
 
-		{
+        parent::__construct();
 
-			parent::__construct();
+        $this->load->model('main_model');
 
-			$this -> load -> model('main_model');
+    }
 
-		}
 
+    function amp()
+    {
 
+        echo "amp site";
 
-		function amp(){
+    }
 
-			echo "amp site";
+    function error_404()
+    {
 
-		}
+        $data = $this->main_model->general();
+        $this->output->set_status_header('404');
+        $this->load->view('guest/error_404', $data);
 
-		function error_404(){
+    }
 
-			$data = $this -> main_model -> general();
-			$this->output->set_status_header('404');
-			$this -> load -> view('guest/error_404', $data);
+    function error_404_redirect()
+    {
 
-		}
+        redirect('error-404.html');
 
-		function error_404_redirect(){
+    }
 
-			redirect('error-404.html');
+    function trang_chu($message = false)
+    {
+        global $lang;
 
-		}
+        $data = $this->main_model->general();
 
-		function trang_chu($message = false){
-			global $lang;
+        // var_dump($this->config->item('paypaltest'));die();
 
-			$data = $this -> main_model -> general();
+        // $this -> load -> library('pagination');
 
-			// var_dump($this->config->item('paypaltest'));die();
+        // $config["base_url"] = base_url().'trang-chu?';
 
-			// $this -> load -> library('pagination');
+        // $config["uri_segment"] = 2;
 
-			// $config["base_url"] = base_url().'trang-chu?';
+        // $config["enable_query_strings"] = TRUE;
 
-			// $config["uri_segment"] = 2;
+        // $config["page_query_string"] = TRUE;
 
-			// $config["enable_query_strings"] = TRUE;
+        // $config['query_string_segment'] = 'trang';
 
-			// $config["page_query_string"] = TRUE;
+        // $config["total_rows"] = $this -> products_model -> Get_new_pagination_number();
 
-			// $config['query_string_segment'] = 'trang';
+        // $config["per_page"] = $data["per_page"] = 9;
 
-			// $config["total_rows"] = $this -> products_model -> Get_new_pagination_number();
+        // $config['next_link'] = "sau";
 
-			// $config["per_page"] = $data["per_page"] = 9;
+        // $config['prev_link'] = "trước";
 
-			// $config['next_link'] = "sau";
+        // $config['last_link'] = 'cuối';
 
-			// $config['prev_link'] = "trước";
+        // $config['first_link'] = 'đầu';
 
-			// $config['last_link'] = 'cuối';
+        // $config['use_page_numbers'] = TRUE;
 
-			// $config['first_link'] = 'đầu';
+        // $this -> pagination -> initialize($config);
 
-			// $config['use_page_numbers'] = TRUE;
+        // $data['links'] = $this -> pagination -> create_links();
 
-			// $this -> pagination -> initialize($config);
+        // $data['page'] = (isset($_GET['trang']) && $_GET['trang']) ? $_GET['trang'] : 0;
 
-			// $data['links'] = $this -> pagination -> create_links();
+        // $offset = ($data['page']  == 0) ? 0 : ($data['page'] * $config['per_page']) - $config['per_page'];
 
-			// $data['page'] = (isset($_GET['trang']) && $_GET['trang']) ? $_GET['trang'] : 0;
+        $data['record'] = $record = $this->products_model->Get_new_pagination_number();
+        $data['display'] = $display = 6;
+        if ($record > $display) {
+            $data['total_page'] = $total_page = ceil($record / $display);
+        } else {
+            $data['total_page'] = $total_page = 1;
+        }
 
-			// $offset = ($data['page']  == 0) ? 0 : ($data['page'] * $config['per_page']) - $config['per_page'];
+        $start = (isset($_GET['start']) && (int)$_GET['start'] >= 0) ? $_GET['start'] : 0;
+        $data['current_page'] = $current_page = ($start / $display) + 1;
+        $data['end_page'] = $end_page = $total_page;
+        $start_page = 1;
+        $offset = $start * $display;
+        $data['productsList'] = $this->products_model->Get_new_pagination_product($display, $offset);
+        if ($data['productsList']) {
+            foreach ($data['productsList'] as $key => $value) {
+                $value->Description = $this->trim_text($value->Description, 150);
+            }
+        }
 
-			$data['record'] = $record = $this -> products_model -> Get_new_pagination_number();
-			$data['display'] = $display = 6;
-			if($record > $display) {
-				$data['total_page'] = $total_page = ceil($record/$display);
-			} else {
-				$data['total_page'] = $total_page = 1;
-			}
 
-			$start = (isset($_GET['start']) && (int)$_GET['start']>=0) ? $_GET['start'] : 0;
-			$data['current_page'] = $current_page = ($start/$display)+1;
-			$data['end_page'] = $end_page = $total_page;
-			$start_page = 1;
-			$offset = $start * $display;
-			$data['productsList'] = $this -> products_model -> Get_new_pagination_product($display, $offset);
-			if ($data['productsList']) {
-				foreach ($data['productsList'] as $key => $value) {
-					$value -> Description = $this->trim_text($value -> Description, 150);
-				}
-			}
+        // $data['HotProducts'] = $this -> products_model -> Get_hot_products(8);
 
+        // $data['SellerProducts'] = $this -> products_model -> Get_seller_products(8);
 
-			// $data['HotProducts'] = $this -> products_model -> Get_hot_products(8);
+        // $data['PromoProducts'] = $this -> products_model -> Get_promotion_products(13);
 
-			// $data['SellerProducts'] = $this -> products_model -> Get_seller_products(8);
+        // $data['gallery'] = $this -> ads_model -> Ads_get_for_show(1);
 
-			// $data['PromoProducts'] = $this -> products_model -> Get_promotion_products(13);
+        // $data['banner_ads'] = $this -> ads_model -> Ads_get_for_show(2);
 
-			// $data['gallery'] = $this -> ads_model -> Ads_get_for_show(1);
+        $data['menu'] = $this->menu_model->Menu_get_all('trang-chu');
 
-			// $data['banner_ads'] = $this -> ads_model -> Ads_get_for_show(2);
+        $data['sub_menu'] = $this->menu_model->Menu_sub_get_all();
 
-			$data['menu'] = $this -> menu_model -> Menu_get_all('trang-chu');
 
-			$data['sub_menu'] = $this -> menu_model -> Menu_sub_get_all();
+        $this->load->model('partners_model');
+        $data['partners'] = $this->partners_model->getAll();
 
+        $data['faq'] = $parent = $this->categories_news_model->Get_cate_and_detail_news(24, 5, 1);
 
-			$this -> load -> model('partners_model');
-			$data['partners'] = $this -> partners_model -> getAll();
 
-			$data['faq'] = $parent = $this -> categories_news_model -> Get_cate_and_detail_news(24, 5, 1);
+        if ($message) {
 
-			
+            $data['message'] = $message;
 
-			if($message){
+        }
 
-				$data['message'] = $message;
 
-			}
+        $this->load->view('guest/main_index', $data);
 
+    }
 
 
-			$this -> load -> view('guest/main_index', $data);
+    function products($slug = "")
+    {
+        global $lang;
 
-		}
+        $data = $this->main_model->general();
 
+        $data['menu'] = $this->menu_model->Menu_get_all('san-pham');
 
+        $data['isRibbon'] = false;
 
-		function products($slug = "") {
-			global $lang;
+        if (!$slug) {
 
-			$data = $this -> main_model -> general();
+            redirect('error-404.html');
 
-			$data['menu'] = $this -> menu_model -> Menu_get_all('san-pham');
+        } else if ($slug == "moi") {
 
-			$data['isRibbon'] = false;
+            $this->load->library('pagination');
 
-			if (!$slug) {
+            $config["base_url"] = base_url() . 'moi';
 
-				redirect('error-404.html');
+            $config["uri_segment"] = 2;
 
-			} else if ($slug == "moi") {
+            $config["enable_query_strings"] = TRUE;
 
-				$this -> load -> library('pagination');
+            // $config["page_query_string"] = TRUE;
 
-				$config["base_url"] = base_url().'moi';
+            $config['query_string_segment'] = 'trang';
 
-				$config["uri_segment"] = 2;
+            $config["total_rows"] = $this->products_model->Get_new_pagination_number();
 
-				$config["enable_query_strings"] = TRUE;
+            $config["per_page"] = $data["per_page"] = 9;
 
-				// $config["page_query_string"] = TRUE;
+            $config['next_link'] = "sau";
 
-				$config['query_string_segment'] = 'trang';
+            $config['prev_link'] = "trước";
 
-				$config["total_rows"] = $this -> products_model -> Get_new_pagination_number();
+            $config['last_link'] = 'cuối';
 
-				$config["per_page"] = $data["per_page"] = 9;
+            $config['first_link'] = 'đầu';
 
-				$config['next_link'] = "sau";
+            $config['prefix'] = 'trang-';
 
-				$config['prev_link'] = "trước";
+            // $config['use_page_numbers'] = TRUE;
 
-				$config['last_link'] = 'cuối';
+            $this->pagination->initialize($config);
 
-				$config['first_link'] = 'đầu';
+            $data['links'] = $this->pagination->create_links();
 
-				$config['prefix'] = 'trang-';
+            $this->pagination->initialize($config);
+            $data['page'] = ($this->uri->segment(2)) ? (int)str_replace(array('trang-', '.html'), "", $this->uri->segment(2)) : 1;
 
-				// $config['use_page_numbers'] = TRUE;
+            $offset = ($data['page'] * $config['per_page']) - $config['per_page'];
 
-				$this -> pagination -> initialize($config);
+            $data['productsList'] = $this->products_model->Get_new_pagination_product($config["per_page"], $offset);
 
-				$data['links'] = $this -> pagination -> create_links();
+            if ($data['productsList']) {
 
-				$this -> pagination -> initialize($config);
-				$data['page'] = ($this -> uri -> segment(2)) ? (int)str_replace(array('trang-', '.html'), "", $this -> uri -> segment(2)) : 1;
+                foreach ($data['productsList'] as $key => $value) {
 
-				$offset = ($data['page'] * $config['per_page']) - $config['per_page'];
+                    $value->Description = $this->trim_text($value->Description, 150);
 
-				$data['productsList'] = $this -> products_model -> Get_new_pagination_product($config["per_page"], $offset);
+                }
 
-				if ($data['productsList']) {
+            }
 
-					foreach ($data['productsList'] as $key => $value) {
+            $data['links'] = $this->pagination->create_links();
 
-						$value -> Description = $this->trim_text($value -> Description, 150);
+            $this->breadcrumb->append_crumb("Trang chủ", base_url());
 
-					}
+            $this->breadcrumb->append_crumb("Sản phẩm mới", base_url() . "moi");
 
-				}
+            $data['breadcrumb'] = $this->breadcrumb->output();
 
-				$data['links'] = $this -> pagination -> create_links();
+            $data['parent'] = new StdClass();
 
-				$this -> breadcrumb -> append_crumb("Trang chủ", base_url());
+            $data['parent']->Title = "Sản phẩm mới";
 
-				$this -> breadcrumb -> append_crumb("Sản phẩm mới", base_url(). "moi");
+            $this->load->view('guest/main_product1.php', $data);
 
-				$data['breadcrumb'] = $this -> breadcrumb -> output();
+        } else if ($slug == "du-an-hoan-thanh") {
 
-				$data['parent'] = new StdClass();
+            $this->load->library('pagination');
 
-				$data['parent'] -> Title = "Sản phẩm mới";
+            $config["base_url"] = base_url() . 'du-an-hoan-thanh';
 
-				$this -> load -> view('guest/main_product1.php', $data);
+            $config["uri_segment"] = 2;
 
-			} else if ($slug == "du-an-hoan-thanh") {
+            $config["enable_query_strings"] = TRUE;
 
-				$this -> load -> library('pagination');
+            // $config["page_query_string"] = TRUE;
 
-				$config["base_url"] = base_url().'du-an-hoan-thanh';
+            $config['query_string_segment'] = 'trang';
 
-				$config["uri_segment"] = 2;
+            $config["total_rows"] = $this->products_model->Get_new_pagination_number();
 
-				$config["enable_query_strings"] = TRUE;
+            $config["per_page"] = $data["per_page"] = 9;
 
-				// $config["page_query_string"] = TRUE;
+            $config['next_link'] = "sau";
 
-				$config['query_string_segment'] = 'trang';
+            $config['prev_link'] = "trước";
 
-				$config["total_rows"] = $this -> products_model -> Get_new_pagination_number();
+            $config['last_link'] = 'cuối';
 
-				$config["per_page"] = $data["per_page"] = 9;
+            $config['first_link'] = 'đầu';
+            $config['prefix'] = 'trang-';
 
-				$config['next_link'] = "sau";
+            // $config['use_page_numbers'] = TRUE;
 
-				$config['prev_link'] = "trước";
+            $this->pagination->initialize($config);
 
-				$config['last_link'] = 'cuối';
+            $data['links'] = $this->pagination->create_links();
 
-				$config['first_link'] = 'đầu';
-				$config['prefix'] = 'trang-';
+            $this->pagination->initialize($config);
+            $data['page'] = ($this->uri->segment(2)) ? (int)str_replace(array('trang-', '.html'), "", $this->uri->segment(2)) : 1;
 
-				// $config['use_page_numbers'] = TRUE;
+            $offset = ($data['page'] * $config['per_page']) - $config['per_page'];
 
-				$this -> pagination -> initialize($config);
+            $data['productsList'] = $this->products_model->Get_hot_pagination_product($config["per_page"], $offset);
 
-				$data['links'] = $this -> pagination -> create_links();
+            $data['links'] = $this->pagination->create_links();
 
-				$this -> pagination -> initialize($config);
-				$data['page'] = ($this -> uri -> segment(2)) ? (int)str_replace(array('trang-', '.html'), "", $this -> uri -> segment(2)) : 1;
+            $this->breadcrumb->append_crumb("Trang chủ", base_url());
 
-				$offset = ($data['page'] * $config['per_page']) - $config['per_page'];
+            $this->breadcrumb->append_crumb("Sản phẩm nổi bật", base_url() . "noi-bat");
 
-				$data['productsList'] = $this -> products_model -> Get_hot_pagination_product($config["per_page"], $offset);
 
-				$data['links'] = $this -> pagination -> create_links();
+            if ($data['productsList']) {
 
-				$this -> breadcrumb -> append_crumb("Trang chủ", base_url());
+                foreach ($data['productsList'] as $key => $value) {
 
-				$this -> breadcrumb -> append_crumb("Sản phẩm nổi bật", base_url(). "noi-bat");
+                    $value->Description = $this->trim_text($value->Description, 150);
 
+                }
 
+            }
 
-				if ($data['productsList']) {
+            $data['breadcrumb'] = $this->breadcrumb->output();
 
-					foreach ($data['productsList'] as $key => $value) {
+            $data['parent'] = new StdClass();
 
-						$value -> Description = $this->trim_text($value -> Description, 150);
+            $data['parent']->Title = "Sản phẩm nổi bật";
 
-					}
+            $this->load->view('guest/main_product1.php', $data);
 
-				}
+        } else if ($slug == "ban-chay") {
 
-				$data['breadcrumb'] = $this -> breadcrumb -> output();
+            $this->load->library('pagination');
 
-				$data['parent'] = new StdClass();
+            $config["base_url"] = base_url() . 'ban-chay';
 
-				$data['parent'] -> Title = "Sản phẩm nổi bật";
+            $config["uri_segment"] = 2;
 
-				$this -> load -> view('guest/main_product1.php', $data);
+            $config["enable_query_strings"] = TRUE;
 
-			} else if ($slug == "ban-chay") {
+            // $config["page_query_string"] = TRUE;
 
-				$this -> load -> library('pagination');
+            $config['query_string_segment'] = 'trang';
 
-				$config["base_url"] = base_url().'ban-chay';
+            $config["total_rows"] = $this->products_model->Get_new_pagination_number();
 
-				$config["uri_segment"] = 2;
+            $config["per_page"] = $data["per_page"] = 9;
 
-				$config["enable_query_strings"] = TRUE;
+            $config['next_link'] = "sau";
 
-				// $config["page_query_string"] = TRUE;
+            $config['prev_link'] = "trước";
 
-				$config['query_string_segment'] = 'trang';
+            $config['last_link'] = 'cuối';
 
-				$config["total_rows"] = $this -> products_model -> Get_new_pagination_number();
+            $config['first_link'] = 'đầu';
+            $config['prefix'] = 'trang-';
 
-				$config["per_page"] = $data["per_page"] = 9;
+            // $config['use_page_numbers'] = TRUE;
 
-				$config['next_link'] = "sau";
+            $this->pagination->initialize($config);
 
-				$config['prev_link'] = "trước";
+            $data['links'] = $this->pagination->create_links();
 
-				$config['last_link'] = 'cuối';
 
-				$config['first_link'] = 'đầu';
-				$config['prefix'] = 'trang-';
+            $this->pagination->initialize($config);
+            $data['page'] = ($this->uri->segment(2)) ? (int)str_replace(array('trang-', '.html'), "", $this->uri->segment(2)) : 1;
 
-				// $config['use_page_numbers'] = TRUE;
+            $offset = ($data['page'] * $config['per_page']) - $config['per_page'];
 
-				$this -> pagination -> initialize($config);
+            $data['productsList'] = $this->products_model->Get_sellers_pagination_product($config["per_page"], $offset);
 
-				$data['links'] = $this -> pagination -> create_links();
+            $data['links'] = $this->pagination->create_links();
 
+            $this->breadcrumb->append_crumb("Trang chủ", base_url());
 
-				$this -> pagination -> initialize($config);
-				$data['page'] = ($this -> uri -> segment(2)) ? (int)str_replace(array('trang-', '.html'), "", $this -> uri -> segment(2)) : 1;
+            $this->breadcrumb->append_crumb("Sản phẩm bán chạy", base_url() . "ban-chay");
 
-				$offset = ($data['page'] * $config['per_page']) - $config['per_page'];
 
-				$data['productsList'] = $this -> products_model -> Get_sellers_pagination_product($config["per_page"], $offset);
+            $data['SellerProducts'] = $this->products_model->Get_seller_products(6);
 
-				$data['links'] = $this -> pagination -> create_links();
+            $data['latest_news'] = $this->news_model->Get_latest_news(3);
 
-				$this -> breadcrumb -> append_crumb("Trang chủ", base_url());
+            $data['breadcrumb'] = $this->breadcrumb->output();
 
-				$this -> breadcrumb -> append_crumb("Sản phẩm bán chạy", base_url(). "ban-chay");
+            $data['parent'] = new StdClass();
 
+            $data['parent']->Title = "Sản phẩm bán chạy";
 
-				$data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
+            $this->load->view('guest/main_product1.php', $data);
 
-				$data['latest_news'] = $this -> news_model -> Get_latest_news(3);
+        } else if ($slug == "khuyen-mai") {
 
-				$data['breadcrumb'] = $this -> breadcrumb -> output();
+            $this->load->library('pagination');
 
-				$data['parent'] = new StdClass();
+            $config["base_url"] = base_url() . 'khuyen-mai';
 
-				$data['parent'] -> Title = "Sản phẩm bán chạy";
+            $config["uri_segment"] = 2;
 
-				$this -> load -> view('guest/main_product1.php', $data);
+            $config["enable_query_strings"] = TRUE;
 
-			} else if ($slug == "khuyen-mai") {
+            // $config["page_query_string"] = TRUE;
 
-				$this -> load -> library('pagination');
+            $config['query_string_segment'] = 'trang';
 
-				$config["base_url"] = base_url().'khuyen-mai';
+            $config["total_rows"] = $this->products_model->Get_new_pagination_number();
 
-				$config["uri_segment"] = 2;
+            $config["per_page"] = $data["per_page"] = 9;
 
-				$config["enable_query_strings"] = TRUE;
+            $config['next_link'] = "sau";
 
-				// $config["page_query_string"] = TRUE;
+            $config['prev_link'] = "trước";
 
-				$config['query_string_segment'] = 'trang';
+            $config['last_link'] = 'cuối';
 
-				$config["total_rows"] = $this -> products_model -> Get_new_pagination_number();
+            $config['first_link'] = 'đầu';
 
-				$config["per_page"] = $data["per_page"] = 9;
+            $config['prefix'] = 'trang-';
 
-				$config['next_link'] = "sau";
+            // $config['use_page_numbers'] = TRUE;
 
-				$config['prev_link'] = "trước";
+            $this->pagination->initialize($config);
 
-				$config['last_link'] = 'cuối';
+            $data['links'] = $this->pagination->create_links();
 
-				$config['first_link'] = 'đầu';
+            $this->pagination->initialize($config);
+            $data['page'] = ($this->uri->segment(2)) ? (int)str_replace(array('trang-', '.html'), "", $this->uri->segment(2)) : 1;
 
-				$config['prefix'] = 'trang-';
+            $offset = ($data['page'] * $config['per_page']) - $config['per_page'];
 
-				// $config['use_page_numbers'] = TRUE;
+            $data['productsList'] = $this->products_model->Get_promotion_pagination_product($config["per_page"], $offset);
 
-				$this -> pagination -> initialize($config);
+            $data['links'] = $this->pagination->create_links();
 
-				$data['links'] = $this -> pagination -> create_links();
+            $this->breadcrumb->append_crumb("Trang chủ", base_url());
 
-				$this -> pagination -> initialize($config);
-				$data['page'] = ($this -> uri -> segment(2)) ? (int)str_replace(array('trang-', '.html'), "", $this -> uri -> segment(2)) : 1;
+            $this->breadcrumb->append_crumb("Sản phẩm khuyến mãi", base_url() . "khuyen-mai");
 
-				$offset = ($data['page'] * $config['per_page']) - $config['per_page'];
 
-				$data['productsList'] = $this -> products_model -> Get_promotion_pagination_product($config["per_page"], $offset);
+            $data['SellerProducts'] = $this->products_model->Get_seller_products(6);
 
-				$data['links'] = $this -> pagination -> create_links();
+            $data['latest_news'] = $this->news_model->Get_latest_news(3);
 
-				$this -> breadcrumb -> append_crumb("Trang chủ", base_url());
+            $data['breadcrumb'] = $this->breadcrumb->output();
 
-				$this -> breadcrumb -> append_crumb("Sản phẩm khuyến mãi", base_url(). "khuyen-mai");
+            $data['parent'] = new StdClass();
 
+            $data['parent']->Title = "Sản phẩm khuyến mãi";
 
+            $this->load->view('guest/main_product1.php', $data);
 
-				$data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
+        } else if ($this->categories_product_model->Get_details($slug)) {
 
-				$data['latest_news'] = $this -> news_model -> Get_latest_news(3);
+            $data['showSorting'] = true;
 
-				$data['breadcrumb'] = $this -> breadcrumb -> output();
+            $data['showIntro'] = true;
 
-				$data['parent'] = new StdClass();
+            $data['parent'] = $parent = $this->categories_product_model->Get_details($slug);
+            // var_dump($data['parent']);
+            $data['parent_child'] = $this->categories_product_model->Get_top_child_cate($parent->CategoriesProductsID);
 
-				$data['parent'] -> Title = "Sản phẩm khuyến mãi";
+            $parent_list = $this->categories_product_model->Get_categories_tree($data['parent']->CategoriesProductsID);
 
-				$this -> load -> view('guest/main_product1.php', $data);
+            $parent_list[] = $data['parent']->CategoriesProductsID;
 
-			} else if($this -> categories_product_model -> Get_details($slug)) {
+            $data['current_query'] = $_SERVER['QUERY_STRING'];
 
-				$data['showSorting'] = true;
+            $data['sort'] = array();
 
-				$data['showIntro'] = true;
+            $data['sort_b'] = false;
 
-				$data['parent'] = $parent = $this -> categories_product_model -> Get_details($slug);
-				// var_dump($data['parent']);
-				$data['parent_child'] = $this -> categories_product_model -> Get_top_child_cate($parent -> CategoriesProductsID);
+            if ($this->input->get('b')) {
 
-				$parent_list = $this -> categories_product_model -> Get_categories_tree($data['parent'] -> CategoriesProductsID);
+                $data['sort_b'] = true;
 
-				$parent_list[] = $data['parent'] -> CategoriesProductsID;
+                $data['sort']['b'] = $this->input->get('b');
 
-				$data['current_query'] = $_SERVER['QUERY_STRING'];
+                $temp_b = $_GET;
 
-				$data['sort'] = array();
+                unset($temp_b['b']);
 
-				$data['sort_b'] = false;
+                unset($temp_b['trang']);
 
-				if ($this->input->get('b')) {
+                $data['current_query_brand'] = http_build_query($temp_b);
 
-					$data['sort_b'] = true;
+            } else {
 
-					$data['sort']['b'] = $this->input->get('b');
+                if ($data['current_query'] != "") {
 
-					$temp_b = $_GET;
+                    $temp_b = $_GET;
 
-					unset($temp_b['b']);
+                    unset($temp_b['trang']);
 
-					unset($temp_b['trang']);
+                    $data['current_query_brand'] = http_build_query($temp_b);
 
-					$data['current_query_brand'] = http_build_query($temp_b);
+                }
 
-				} else{
+            }
 
-					if($data['current_query'] != ""){
 
-						$temp_b = $_GET;
+            $data['sort_p'] = false;
 
-						unset($temp_b['trang']);
+            if ($this->input->get('p')) {
 
-						$data['current_query_brand'] = http_build_query($temp_b);
+                $data['sort_p'] = true;
 
-					}
+                $data['sort']['p'] = $this->input->get('p');
 
-				}
+                $temp_p = $_GET;
 
+                unset($temp_p['p']);
 
+                unset($temp_p['trang']);
 
-				$data['sort_p'] = false;
+                $data['current_query_price'] = http_build_query($temp_p);
 
-				if ($this->input->get('p')) {
+            } else {
 
-					$data['sort_p'] = true;
+                if ($data['current_query'] != "") {
 
-					$data['sort']['p'] = $this->input->get('p');
+                    $temp_p = $_GET;
 
-					$temp_p = $_GET;
+                    unset($temp_p['trang']);
 
-					unset($temp_p['p']);
+                    $data['current_query_price'] = http_build_query($temp_p);
 
-					unset($temp_p['trang']);
+                }
 
-					$data['current_query_price'] = http_build_query($temp_p);
+            }
 
-				} else{
 
-					if($data['current_query'] != ""){
+            $data['sort_r'] = false;
 
-						$temp_p = $_GET;
+            if ($this->input->get('r')) {
 
-						unset($temp_p['trang']);
+                $data['sort_r'] = true;
 
-						$data['current_query_price'] = http_build_query($temp_p);
+                $data['sort']['r'] = $this->input->get('r');
 
-					}
+                $temp_r = $_GET;
 
-				}
+                unset($temp_r['r']);
 
+                unset($temp_r['trang']);
 
+                $data['current_query_res'] = http_build_query($temp_r);
 
-				$data['sort_r'] = false;
+            } else {
 
-				if ($this->input->get('r')) {
+                if ($data['current_query'] != "") {
 
-					$data['sort_r'] = true;
+                    $temp_r = $_GET;
 
-					$data['sort']['r'] = $this->input->get('r');
+                    unset($temp_r['trang']);
 
-					$temp_r = $_GET;
+                    $data['current_query_res'] = http_build_query($temp_r);
 
-					unset($temp_r['r']);
+                }
 
-					unset($temp_r['trang']);
+            }
 
-					$data['current_query_res'] = http_build_query($temp_r);
 
-				} else{
+            $data['sort_c'] = false;
 
-					if($data['current_query'] != ""){
+            if ($this->input->get('c')) {
 
-						$temp_r = $_GET;
+                $data['sort_c'] = true;
 
-						unset($temp_r['trang']);
+                $data['sort']['c'] = $this->input->get('c');
 
-						$data['current_query_res'] = http_build_query($temp_r);
+                $temp_c = $_GET;
 
-					}
+                unset($temp_c['c']);
 
-				}
+                unset($temp_c['trang']);
 
+                $data['current_query_channel'] = http_build_query($temp_c);
 
+            } else {
 
-				$data['sort_c'] = false;
+                if ($data['current_query'] != "") {
 
-				if ($this->input->get('c')) {
+                    $temp_c = $_GET;
 
-					$data['sort_c'] = true;
+                    unset($temp_c['trang']);
 
-					$data['sort']['c'] = $this->input->get('c');
+                    $data['current_query_channel'] = http_build_query($temp_c);
 
-					$temp_c = $_GET;
+                }
 
-					unset($temp_c['c']);
+            }
 
-					unset($temp_c['trang']);
 
-					$data['current_query_channel'] = http_build_query($temp_c);
+            $data['sort_o'] = false;
 
-				} else{
+            $data['current_query_order'] = http_build_query($_GET);
 
-					if($data['current_query'] != ""){
+            if ($this->input->get('o')) {
 
-						$temp_c = $_GET;
+                $data['sort_o'] = true;
 
-						unset($temp_c['trang']);
+                $data['sort']['o'] = $this->input->get('o');
 
-						$data['current_query_channel'] = http_build_query($temp_c);
+                $temp_o = $_GET;
 
-					}
+                unset($temp_o['o']);
 
-				}
+                unset($temp_o['trang']);
 
+                $data['current_query_order'] = http_build_query($temp_o);
 
+            } else {
 
-				$data['sort_o'] = false;
+                if ($data['current_query'] != "") {
 
-				$data['current_query_order'] = http_build_query($_GET);
+                    $temp_o = $_GET;
 
-				if ($this->input->get('o')) {
+                    unset($temp_o['trang']);
 
-					$data['sort_o'] = true;
+                    $data['current_query_order'] = http_build_query($temp_o);
 
-					$data['sort']['o'] = $this->input->get('o');
+                }
 
-					$temp_o = $_GET;
+            }
 
-					unset($temp_o['o']);
 
-					unset($temp_o['trang']);
+            if ($parent->SEOTitle) {
+                $data['SEOTitle'] = $parent->SEOTitle;
+            } else {
+                $data['SEOTitle'] = $parent->Title;
+            }
 
-					$data['current_query_order'] = http_build_query($temp_o);
+            if ($parent->SEOKeyword) {
+                $data['SEOKeyword'] = $parent->SEOKeyword;
+            }
 
-				} else{
+            if ($parent->SEODescription) {
+                $data['SEODescription'] = $parent->SEODescription;
+            }
 
-					if($data['current_query'] != ""){
 
-						$temp_o = $_GET;
+            // $this -> load -> library('pagination');
 
-						unset($temp_o['trang']);
+            // $temp_trang = $_GET;
 
-						$data['current_query_order'] = http_build_query($temp_o);
+            // unset($temp_trang['trang']);
 
-					}
+            // $data['current_query_trang'] = http_build_query($temp_trang);
 
-				}
 
+            // $config["base_url"] = base_url() . $parent -> Slug . "/?" . $data['current_query_trang'];
 
+            // $config["total_rows"] = $this -> products_model -> Get_pagination_number($parent_list,$data['sort']);
 
-				if($parent -> SEOTitle){ $data['SEOTitle'] = $parent -> SEOTitle;}
+            // $config["per_page"] = $data["per_page"] = 8;
 
-				else {$data['SEOTitle'] = $parent -> Title;}
+            // $config['page_query_string'] = TRUE;
 
-				if($parent -> SEOKeyword){ $data['SEOKeyword'] = $parent -> SEOKeyword;}
+            // $config['query_string_segment'] = 'trang';
 
-				if($parent -> SEODescription){ $data['SEODescription'] = $parent -> SEODescription;}
+            // $data['page'] = 0;
 
+            // if($this->input->get('trang')){
 
+            // 	$data['page'] = $this->input->get('trang');
 
-				// $this -> load -> library('pagination');
+            // }
 
-				// $temp_trang = $_GET;
+            // $offset = ($data['page']  == 0) ? 0 : ($data['page'] * $config['per_page']) - $config['per_page'];
 
-				// unset($temp_trang['trang']);
 
-				// $data['current_query_trang'] = http_build_query($temp_trang);
+            // $this -> pagination -> initialize($config);
 
 
+            $this->load->library('pagination');
 
-				// $config["base_url"] = base_url() . $parent -> Slug . "/?" . $data['current_query_trang'];
+            $config["base_url"] = base_url() . $slug;
 
-				// $config["total_rows"] = $this -> products_model -> Get_pagination_number($parent_list,$data['sort']);
+            $config["uri_segment"] = 2;
 
-				// $config["per_page"] = $data["per_page"] = 8;
+            $config["enable_query_strings"] = TRUE;
 
-				// $config['page_query_string'] = TRUE;
+            // $config["page_query_string"] = TRUE;
 
-				// $config['query_string_segment'] = 'trang';
+            $config['query_string_segment'] = 'trang';
 
-				// $data['page'] = 0;
+            $config["total_rows"] = $this->products_model->Get_pagination_number($parent_list, $data['sort']);
 
-				// if($this->input->get('trang')){
+            $config["per_page"] = $data["per_page"] = 9;
 
-				// 	$data['page'] = $this->input->get('trang');
+            $config['next_link'] = "sau";
 
-				// }
+            $config['prev_link'] = "trước";
 
-				// $offset = ($data['page']  == 0) ? 0 : ($data['page'] * $config['per_page']) - $config['per_page'];
+            $config['last_link'] = 'cuối';
 
+            $config['first_link'] = 'đầu';
 
+            $config['prefix'] = 'trang-';
 
-				// $this -> pagination -> initialize($config);
 
+            $this->pagination->initialize($config);
 
+            $data['links'] = $this->pagination->create_links();
 
+            $this->pagination->initialize($config);
+            $data['page'] = ($this->uri->segment(2)) ? (int)str_replace(array('trang-', '.html'), "", $this->uri->segment(2)) : 1;
 
+            $offset = ($data['page'] * $config['per_page']) - $config['per_page'];
 
-				$this -> load -> library('pagination');
+            if (($data['page'] * $config["per_page"]) < $config["total_rows"]) {
+                $data['next_rel'] = '<link rel="next" href="' . base_url($slug) . '/trang-' . ($data['page'] + 1) . '.html">';
+            }
+            if ($data['page'] > 1) {
+                $data['prev_rel'] = '<link rel="prev" href="' . base_url($slug) . '/trang-' . ($data['page'] - 1) . '.html">';
+            }
+            $data['links'] = $this->pagination->create_links();
 
-				$config["base_url"] = base_url() . $slug;
+            $data['productsList'] = $this->products_model->Get_pagination_product($config["per_page"], $offset, $parent_list, $data['sort'], $parent->SortingPrice);
 
-				$config["uri_segment"] = 2;
+            if ($data['productsList']) {
 
-				$config["enable_query_strings"] = TRUE;
+                foreach ($data['productsList'] as $key => $value) {
 
-				// $config["page_query_string"] = TRUE;
+                    $value->Description = $this->trim_text($value->Description, 150);
 
-				$config['query_string_segment'] = 'trang';
+                }
 
-				$config["total_rows"] = $this -> products_model -> Get_pagination_number($parent_list,$data['sort']);
+            }
 
-				$config["per_page"] = $data["per_page"] = 9;
+            $breadcrumb_list = $this->products_model->Get_breadcrumb($parent->CategoriesProductsID);
 
-				$config['next_link'] = "sau";
+            $breadcrumb_list = array_reverse($breadcrumb_list);
 
-				$config['prev_link'] = "trước";
+            $this->breadcrumb->append_crumb('Trang chủ', base_url());
 
-				$config['last_link'] = 'cuối';
+            foreach ($breadcrumb_list as $bl) {
 
-				$config['first_link'] = 'đầu';
+                $this->breadcrumb->append_crumb($bl->Title, base_url() . $bl->Slug);
 
-				$config['prefix'] = 'trang-';
+            }
 
+            // $data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
 
-				$this -> pagination -> initialize($config);
+            // $data['latest_news'] = $this -> news_model -> Get_latest_news(3);
 
-				$data['links'] = $this -> pagination -> create_links();
+            $data['breadcrumb'] = $this->breadcrumb->output();
 
-				$this -> pagination -> initialize($config);
-				$data['page'] = ($this -> uri -> segment(2)) ? (int)str_replace(array('trang-', '.html'), "", $this -> uri -> segment(2)) : 1;
 
-				$offset = ($data['page'] * $config['per_page']) - $config['per_page'];
+            $this->load->view('guest/main_product1.php', $data);
 
-				if (($data['page'] * $config["per_page"]) < $config["total_rows"]) {
-					$data['next_rel'] = '<link rel="next" href="'.base_url($slug).'/trang-'.($data['page'] + 1).'.html">';
-				}
-				if ($data['page'] > 1) {
-					$data['prev_rel'] = '<link rel="prev" href="'.base_url($slug).'/trang-'.($data['page'] - 1).'.html">';
-				}
-				$data['links'] = $this -> pagination -> create_links();
+        } else if ($this->sorting_brand_model->Get_details($slug)) {
+            $data['meta_noindex'] = '<meta name="robots" content="noindex, nofollow, noodp, noarchive" />';
+            $data['parent'] = $parent = $this->sorting_brand_model->Get_details($slug);
 
-				$data['productsList'] = $this -> products_model -> Get_pagination_product($config["per_page"], $offset, $parent_list, $data['sort'],$parent -> SortingPrice);
+            $parent_list = $this->sorting_brand_model->Get_categories_tree($data['parent']->SortingBrandID);
 
-				if ($data['productsList']) {
+            $parent_list[] = $data['parent']->SortingBrandID;
 
-					foreach ($data['productsList'] as $key => $value) {
+            if ($parent->SEOTitle) {
+                $data['SEOTitle'] = $parent->SEOTitle;
+            } else {
+                $data['SEOTitle'] = $parent->Title;
+            }
 
-						$value -> Description = $this->trim_text($value -> Description, 150);
+            if ($parent->SEOKeyword) {
+                $data['SEOKeyword'] = $parent->SEOKeyword;
+            }
 
-					}
+            if ($parent->SEODescription) {
+                $data['SEODescription'] = $parent->SEODescription;
+            }
 
-				}
+            $this->load->library('pagination');
 
-				$breadcrumb_list = $this -> products_model -> Get_breadcrumb($parent -> CategoriesProductsID);
+            $config["base_url"] = base_url() . $slug;
 
-				$breadcrumb_list = array_reverse($breadcrumb_list);
+            $config["uri_segment"] = 2;
 
-				$this -> breadcrumb -> append_crumb('Trang chủ', base_url());
+            $config["total_rows"] = $this->products_model->Get_pagination_number_by_brand($parent_list);
 
-				foreach ($breadcrumb_list as $bl){
+            $config["per_page"] = $data["per_page"] = 9;
 
-					$this -> breadcrumb -> append_crumb($bl -> Title, base_url() . $bl -> Slug);
+            $config['next_link'] = "sau";
 
-				}
+            $config['prev_link'] = "trước";
 
-				// $data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
+            $config['last_link'] = 'cuối';
 
-				// $data['latest_news'] = $this -> news_model -> Get_latest_news(3);
+            $config['first_link'] = 'đầu';
 
-				$data['breadcrumb'] = $this -> breadcrumb -> output();
+            $config['prefix'] = 'trang-';
 
+            // $config['use_page_numbers'] = TRUE;
 
+            $this->pagination->initialize($config);
 
-				$this -> load -> view('guest/main_product1.php', $data);
+            $data['links'] = $this->pagination->create_links();
 
-			} else if($this -> sorting_brand_model -> Get_details($slug)) {
-				$data['meta_noindex'] = '<meta name="robots" content="noindex, nofollow, noodp, noarchive" />';
-				$data['parent'] = $parent = $this -> sorting_brand_model -> Get_details($slug);
+            $this->pagination->initialize($config);
+            $data['page'] = ($this->uri->segment(2)) ? (int)str_replace(array('trang-', '.html'), "", $this->uri->segment(2)) : 1;
 
-				$parent_list = $this -> sorting_brand_model -> Get_categories_tree($data['parent'] -> SortingBrandID);
+            $offset = ($data['page'] * $config['per_page']) - $config['per_page'];
 
-				$parent_list[] = $data['parent'] -> SortingBrandID;
+            if (($data['page'] * $config["per_page"]) < $config["total_rows"]) {
+                $data['next_rel'] = '<link rel="next" href="' . base_url($slug) . '/trang-' . ($data['page'] + 1) . '.html">';
+            }
+            if ($data['page'] > 1) {
+                $data['prev_rel'] = '<link rel="prev" href="' . base_url($slug) . '/trang-' . ($data['page'] - 1) . '.html">';
+            }
+            $data['productsList'] = $this->products_model->Get_pagination_product_by_brand($config["per_page"], $offset, $parent_list);
 
-				if($parent -> SEOTitle){ $data['SEOTitle'] = $parent -> SEOTitle;}
 
-				else {$data['SEOTitle'] = $parent -> Title;}
+            if ($data['productsList']) {
 
-				if($parent -> SEOKeyword){ $data['SEOKeyword'] = $parent -> SEOKeyword;}
+                foreach ($data['productsList'] as $key => $value) {
 
-				if($parent -> SEODescription){ $data['SEODescription'] = $parent -> SEODescription;}
+                    $value->Description = $this->trim_text($value->Description, 150);
 
-				$this -> load -> library('pagination');
+                }
 
-				$config["base_url"] = base_url() . $slug;
+            }
 
-				$config["uri_segment"] = 2;
+            $data['links'] = $this->pagination->create_links();
 
-				$config["total_rows"] = $this -> products_model -> Get_pagination_number_by_brand($parent_list);
+            // $breadcrumb_list = $this -> products_model -> Get_breadcrumb_by_brand($parent -> SortingBrandID);
 
-				$config["per_page"] = $data["per_page"] = 9;
+            // $breadcrumb_list = array_reverse($breadcrumb_list);
 
-				$config['next_link'] = "sau";
+            // $this -> breadcrumb -> append_crumb('Trang chủ', base_url());
 
-				$config['prev_link'] = "trước";
+            // foreach ($breadcrumb_list as $bl){
 
-				$config['last_link'] = 'cuối';
+            // 	$this -> breadcrumb -> append_crumb($bl -> Title, base_url() . $bl -> Slug);
 
-				$config['first_link'] = 'đầu';
+            // }
 
-				$config['prefix'] = 'trang-';
+            // $data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
 
-				// $config['use_page_numbers'] = TRUE;
+            // $data['latest_news'] = $this -> news_model -> Get_latest_news(3);
 
-				$this -> pagination -> initialize($config);
+            $data['breadcrumb'] = $this->breadcrumb->output();
 
-				$data['links'] = $this -> pagination -> create_links();
 
-				$this -> pagination -> initialize($config);
-				$data['page'] = ($this -> uri -> segment(2)) ? (int)str_replace(array('trang-', '.html'), "", $this -> uri -> segment(2)) : 1;
+            $this->load->view('guest/main_product1.php', $data);
 
-				$offset = ($data['page'] * $config['per_page']) - $config['per_page'];
+        } else if ($this->sorting_channel_model->Get_details($slug)) {
+            $data['meta_noindex'] = '<meta name="robots" content="noindex, nofollow, noodp, noarchive" />';
 
-				if (($data['page'] * $config["per_page"]) < $config["total_rows"]) {
-					$data['next_rel'] = '<link rel="next" href="'.base_url($slug).'/trang-'.($data['page'] + 1).'.html">';
-				}
-				if ($data['page'] > 1) {
-					$data['prev_rel'] = '<link rel="prev" href="'.base_url($slug).'/trang-'.($data['page'] - 1).'.html">';
-				}
-				$data['productsList'] = $this -> products_model -> Get_pagination_product_by_brand($config["per_page"], $offset, $parent_list);
+            $data['parent'] = $parent = $this->sorting_channel_model->Get_details($slug);
 
+            $parent_list = $this->sorting_channel_model->Get_categories_tree($data['parent']->SortingChannelID);
 
+            $parent_list[] = $data['parent']->SortingChannelID;
 
-				if ($data['productsList']) {
+            if ($parent->SEOTitle) {
+                $data['SEOTitle'] = $parent->SEOTitle;
+            } else {
+                $data['SEOTitle'] = $parent->Title;
+            }
 
-					foreach ($data['productsList'] as $key => $value) {
+            if ($parent->SEOKeyword) {
+                $data['SEOKeyword'] = $parent->SEOKeyword;
+            }
 
-						$value -> Description = $this->trim_text($value -> Description, 150);
+            if ($parent->SEODescription) {
+                $data['SEODescription'] = $parent->SEODescription;
+            }
 
-					}
+            $this->load->library('pagination');
 
-				}
+            $config["base_url"] = base_url() . $slug;
 
-				$data['links'] = $this -> pagination -> create_links();
+            $config["uri_segment"] = 2;
 
-				// $breadcrumb_list = $this -> products_model -> Get_breadcrumb_by_brand($parent -> SortingBrandID);
+            $config["total_rows"] = $this->products_model->Get_pagination_number_by_channel($parent_list);
 
-				// $breadcrumb_list = array_reverse($breadcrumb_list);
+            $config["per_page"] = $data["per_page"] = 9;
 
-				// $this -> breadcrumb -> append_crumb('Trang chủ', base_url());
+            $config['next_link'] = "sau";
 
-				// foreach ($breadcrumb_list as $bl){
+            $config['prev_link'] = "trước";
 
-				// 	$this -> breadcrumb -> append_crumb($bl -> Title, base_url() . $bl -> Slug);
+            $config['last_link'] = 'cuối';
 
-				// }
+            $config['first_link'] = 'đầu';
 
-				// $data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
+            $config['prefix'] = 'trang-';
 
-				// $data['latest_news'] = $this -> news_model -> Get_latest_news(3);
+            // $config['use_page_numbers'] = TRUE;
 
-				$data['breadcrumb'] = $this -> breadcrumb -> output();
+            $this->pagination->initialize($config);
 
+            $data['links'] = $this->pagination->create_links();
 
+            $this->pagination->initialize($config);
+            $data['page'] = ($this->uri->segment(2)) ? (int)str_replace(array('trang-', '.html'), "", $this->uri->segment(2)) : 1;
 
-				$this -> load -> view('guest/main_product1.php', $data);
+            $offset = ($data['page'] * $config['per_page']) - $config['per_page'];
 
-			} else if($this -> sorting_channel_model -> Get_details($slug)) {
-				$data['meta_noindex'] = '<meta name="robots" content="noindex, nofollow, noodp, noarchive" />';
+            if (($data['page'] * $config["per_page"]) < $config["total_rows"]) {
+                $data['next_rel'] = '<link rel="next" href="' . base_url($slug) . '/trang-' . ($data['page'] + 1) . '.html">';
+            }
+            if ($data['page'] > 1) {
+                $data['prev_rel'] = '<link rel="prev" href="' . base_url($slug) . '/trang-' . ($data['page'] - 1) . '.html">';
+            }
+            $data['productsList'] = $this->products_model->Get_pagination_product_by_channel($config["per_page"], $offset, $parent_list);
 
-				$data['parent'] = $parent = $this -> sorting_channel_model -> Get_details($slug);
 
-				$parent_list = $this -> sorting_channel_model -> Get_categories_tree($data['parent'] -> SortingChannelID);
+            if ($data['productsList']) {
 
-				$parent_list[] = $data['parent'] -> SortingChannelID;
+                foreach ($data['productsList'] as $key => $value) {
 
-				if($parent -> SEOTitle){ $data['SEOTitle'] = $parent -> SEOTitle;}
+                    $value->Description = $this->trim_text($value->Description, 150);
 
-				else {$data['SEOTitle'] = $parent -> Title;}
+                }
 
-				if($parent -> SEOKeyword){ $data['SEOKeyword'] = $parent -> SEOKeyword;}
+            }
 
-				if($parent -> SEODescription){ $data['SEODescription'] = $parent -> SEODescription;}
+            $data['links'] = $this->pagination->create_links();
 
-				$this -> load -> library('pagination');
+            // $breadcrumb_list = $this -> products_model -> Get_breadcrumb_by_brand($parent -> SortingChannelID);
 
-				$config["base_url"] = base_url() . $slug;
+            // $breadcrumb_list = array_reverse($breadcrumb_list);
 
-				$config["uri_segment"] = 2;
+            // $this -> breadcrumb -> append_crumb('Trang chủ', base_url());
 
-				$config["total_rows"] = $this -> products_model -> Get_pagination_number_by_channel($parent_list);
+            // foreach ($breadcrumb_list as $bl){
 
-				$config["per_page"] = $data["per_page"] = 9;
+            // 	$this -> breadcrumb -> append_crumb($bl -> Title, base_url() . $bl -> Slug);
 
-				$config['next_link'] = "sau";
+            // }
 
-				$config['prev_link'] = "trước";
+            // $data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
 
-				$config['last_link'] = 'cuối';
+            // $data['latest_news'] = $this -> news_model -> Get_latest_news(3);
 
-				$config['first_link'] = 'đầu';
+            $data['breadcrumb'] = $this->breadcrumb->output();
 
-				$config['prefix'] = 'trang-';
 
-				// $config['use_page_numbers'] = TRUE;
+            $this->load->view('guest/main_product1.php', $data);
 
-				$this -> pagination -> initialize($config);
+        } else if ($this->sorting_price_model->Get_details($slug)) {
+            $data['meta_noindex'] = '<meta name="robots" content="noindex, nofollow, noodp, noarchive" />';
 
-				$data['links'] = $this -> pagination -> create_links();
+            $data['parent'] = $parent = $this->sorting_price_model->Get_details($slug);
 
-				$this -> pagination -> initialize($config);
-				$data['page'] = ($this -> uri -> segment(2)) ? (int)str_replace(array('trang-', '.html'), "", $this -> uri -> segment(2)) : 1;
+            $parent_list = $this->sorting_price_model->Get_categories_tree($data['parent']->SortingPriceID);
 
-				$offset = ($data['page'] * $config['per_page']) - $config['per_page'];
+            $parent_list[] = $data['parent']->SortingPriceID;
 
-				if (($data['page'] * $config["per_page"]) < $config["total_rows"]) {
-					$data['next_rel'] = '<link rel="next" href="'.base_url($slug).'/trang-'.($data['page'] + 1).'.html">';
-				}
-				if ($data['page'] > 1) {
-					$data['prev_rel'] = '<link rel="prev" href="'.base_url($slug).'/trang-'.($data['page'] - 1).'.html">';
-				}
-				$data['productsList'] = $this -> products_model -> Get_pagination_product_by_channel($config["per_page"], $offset, $parent_list);
+            if ($parent->SEOTitle) {
+                $data['SEOTitle'] = $parent->SEOTitle;
+            } else {
+                $data['SEOTitle'] = $parent->Title;
+            }
 
+            if ($parent->SEOKeyword) {
+                $data['SEOKeyword'] = $parent->SEOKeyword;
+            }
 
-				if ($data['productsList']) {
+            if ($parent->SEODescription) {
+                $data['SEODescription'] = $parent->SEODescription;
+            }
 
-					foreach ($data['productsList'] as $key => $value) {
+            $this->load->library('pagination');
 
-						$value -> Description = $this->trim_text($value -> Description, 150);
+            $config["base_url"] = base_url() . $slug;
 
-					}
+            $config["uri_segment"] = 2;
 
-				}
+            $config["total_rows"] = $this->products_model->Get_pagination_number_by_price($parent_list);
 
-				$data['links'] = $this -> pagination -> create_links();
+            $config["per_page"] = $data["per_page"] = 9;
 
-				// $breadcrumb_list = $this -> products_model -> Get_breadcrumb_by_brand($parent -> SortingChannelID);
+            $config['next_link'] = "sau";
 
-				// $breadcrumb_list = array_reverse($breadcrumb_list);
+            $config['prev_link'] = "trước";
 
-				// $this -> breadcrumb -> append_crumb('Trang chủ', base_url());
+            $config['last_link'] = 'cuối';
 
-				// foreach ($breadcrumb_list as $bl){
+            $config['first_link'] = 'đầu';
 
-				// 	$this -> breadcrumb -> append_crumb($bl -> Title, base_url() . $bl -> Slug);
+            $config['prefix'] = 'trang-';
 
-				// }
+            // $config['use_page_numbers'] = TRUE;
 
-				// $data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
+            $this->pagination->initialize($config);
 
-				// $data['latest_news'] = $this -> news_model -> Get_latest_news(3);
+            $data['links'] = $this->pagination->create_links();
+            $data['page'] = ($this->uri->segment(2)) ? (int)str_replace(array('trang-', '.html'), "", $this->uri->segment(2)) : 1;
 
-				$data['breadcrumb'] = $this -> breadcrumb -> output();
+            $offset = ($data['page'] * $config['per_page']) - $config['per_page'];
 
+            if (($data['page'] * $config["per_page"]) < $config["total_rows"]) {
+                $data['next_rel'] = '<link rel="next" href="' . base_url($slug) . '/trang-' . ($data['page'] + 1) . '.html">';
+            }
+            if ($data['page'] > 1) {
+                $data['prev_rel'] = '<link rel="prev" href="' . base_url($slug) . '/trang-' . ($data['page'] - 1) . '.html">';
+            }
+            $data['productsList'] = $this->products_model->Get_pagination_product_by_price($config["per_page"], $offset, $parent_list);
 
+            if ($data['productsList']) {
 
-				$this -> load -> view('guest/main_product1.php', $data);
+                foreach ($data['productsList'] as $key => $value) {
 
-			} else if($this -> sorting_price_model -> Get_details($slug)) {
-				$data['meta_noindex'] = '<meta name="robots" content="noindex, nofollow, noodp, noarchive" />';
+                    $value->Description = $this->trim_text($value->Description, 150);
 
-				$data['parent'] = $parent = $this -> sorting_price_model -> Get_details($slug);
+                }
 
-				$parent_list = $this -> sorting_price_model -> Get_categories_tree($data['parent'] -> SortingPriceID);
+            }
 
-				$parent_list[] = $data['parent'] -> SortingPriceID;
+            $data['links'] = $this->pagination->create_links();
 
-				if($parent -> SEOTitle){ $data['SEOTitle'] = $parent -> SEOTitle;}
+            // $breadcrumb_list = $this -> products_model -> Get_breadcrumb_by_brand($parent -> SortingPriceID);
 
-				else {$data['SEOTitle'] = $parent -> Title;}
+            // $breadcrumb_list = array_reverse($breadcrumb_list);
 
-				if($parent -> SEOKeyword){ $data['SEOKeyword'] = $parent -> SEOKeyword;}
+            // $this -> breadcrumb -> append_crumb('Trang chủ', base_url());
 
-				if($parent -> SEODescription){ $data['SEODescription'] = $parent -> SEODescription;}
+            // foreach ($breadcrumb_list as $bl){
 
-				$this -> load -> library('pagination');
+            // 	$this -> breadcrumb -> append_crumb($bl -> Title, base_url() . $bl -> Slug);
 
-				$config["base_url"] = base_url() . $slug;
+            // }
 
-				$config["uri_segment"] = 2;
+            // $data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
 
-				$config["total_rows"] = $this -> products_model -> Get_pagination_number_by_price($parent_list);
+            // $data['latest_news'] = $this -> news_model -> Get_latest_news(3);
 
-				$config["per_page"] = $data["per_page"] = 9;
+            $data['breadcrumb'] = $this->breadcrumb->output();
 
-				$config['next_link'] = "sau";
 
-				$config['prev_link'] = "trước";
+            $this->load->view('guest/main_product1.php', $data);
 
-				$config['last_link'] = 'cuối';
+        } else if ($this->sorting_res_model->Get_details($slug)) {
+            $data['meta_noindex'] = '<meta name="robots" content="noindex, nofollow, noodp, noarchive" />';
 
-				$config['first_link'] = 'đầu';
+            $data['parent'] = $parent = $this->sorting_res_model->Get_details($slug);
 
-				$config['prefix'] = 'trang-';
+            $parent_list = $this->sorting_res_model->Get_categories_tree($data['parent']->SortingResID);
 
-				// $config['use_page_numbers'] = TRUE;
+            $parent_list[] = $data['parent']->SortingResID;
 
-				$this -> pagination -> initialize($config);
 
-				$data['links'] = $this -> pagination -> create_links();
-				$data['page'] = ($this -> uri -> segment(2)) ? (int)str_replace(array('trang-', '.html'), "", $this -> uri -> segment(2)) : 1;
+            if ($parent->SEOTitle) {
+                $data['SEOTitle'] = $parent->SEOTitle;
+            } else {
+                $data['SEOTitle'] = $parent->Title;
+            }
 
-				$offset = ($data['page'] * $config['per_page']) - $config['per_page'];
+            if ($parent->SEOKeyword) {
+                $data['SEOKeyword'] = $parent->SEOKeyword;
+            }
 
-				if (($data['page'] * $config["per_page"]) < $config["total_rows"]) {
-					$data['next_rel'] = '<link rel="next" href="'.base_url($slug).'/trang-'.($data['page'] + 1).'.html">';
-				}
-				if ($data['page'] > 1) {
-					$data['prev_rel'] = '<link rel="prev" href="'.base_url($slug).'/trang-'.($data['page'] - 1).'.html">';
-				}
-				$data['productsList'] = $this -> products_model -> Get_pagination_product_by_price($config["per_page"], $offset, $parent_list);
+            if ($parent->SEODescription) {
+                $data['SEODescription'] = $parent->SEODescription;
+            }
 
-				if ($data['productsList']) {
 
-					foreach ($data['productsList'] as $key => $value) {
+            // $this -> load -> library('pagination');
 
-						$value -> Description = $this->trim_text($value -> Description, 150);
+            // $config["base_url"] = base_url() . $parent -> Slug;
 
-					}
+            // $config["total_rows"] = $this -> products_model -> Get_pagination_number_by_res($parent_list);
 
-				}
+            // $config["per_page"] = $data["per_page"] = 8;
 
-				$data['links'] = $this -> pagination -> create_links();
+            // $config["uri_segment"] = 2;
 
-				// $breadcrumb_list = $this -> products_model -> Get_breadcrumb_by_brand($parent -> SortingPriceID);
+            // $this -> pagination -> initialize($config);
 
-				// $breadcrumb_list = array_reverse($breadcrumb_list);
 
-				// $this -> breadcrumb -> append_crumb('Trang chủ', base_url());
+            $this->load->library('pagination');
 
-				// foreach ($breadcrumb_list as $bl){
+            $config["base_url"] = base_url() . $slug;
 
-				// 	$this -> breadcrumb -> append_crumb($bl -> Title, base_url() . $bl -> Slug);
+            $config["uri_segment"] = 2;
 
-				// }
+            $config["total_rows"] = $this->products_model->Get_pagination_number_by_res($parent_list);
 
-				// $data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
+            $config["per_page"] = $data["per_page"] = 9;
 
-				// $data['latest_news'] = $this -> news_model -> Get_latest_news(3);
+            $config['next_link'] = "sau";
 
-				$data['breadcrumb'] = $this -> breadcrumb -> output();
+            $config['prev_link'] = "trước";
 
+            $config['last_link'] = 'cuối';
 
+            $config['first_link'] = 'đầu';
+            $config['prefix'] = 'trang-';
 
-				$this -> load -> view('guest/main_product1.php', $data);
+            // $config['use_page_numbers'] = TRUE;
 
-			} else if($this -> sorting_res_model -> Get_details($slug)) {
-				$data['meta_noindex'] = '<meta name="robots" content="noindex, nofollow, noodp, noarchive" />';
+            $this->pagination->initialize($config);
 
-				$data['parent'] = $parent = $this -> sorting_res_model -> Get_details($slug);
+            $data['links'] = $this->pagination->create_links();
 
-				$parent_list = $this -> sorting_res_model -> Get_categories_tree($data['parent'] -> SortingResID);
+            $data['page'] = ($this->uri->segment(2)) ? (int)str_replace(array('trang-', '.html'), "", $this->uri->segment(2)) : 1;
 
-				$parent_list[] = $data['parent'] -> SortingResID;
 
+            $offset = ($data['page'] * $config['per_page']) - $config['per_page'];
 
+            if (($data['page'] * $config["per_page"]) < $config["total_rows"]) {
+                $data['next_rel'] = '<link rel="next" href="' . base_url($slug) . '/trang-' . ($data['page'] + 1) . '.html">';
+            }
+            if ($data['page'] > 1) {
+                $data['prev_rel'] = '<link rel="prev" href="' . base_url($slug) . '/trang-' . ($data['page'] - 1) . '.html">';
+            }
+            $data['productsList'] = $this->products_model->Get_pagination_product_by_res($config["per_page"], $offset, $parent_list);
 
-				if($parent -> SEOTitle){ $data['SEOTitle'] = $parent -> SEOTitle;}
+            if ($data['productsList']) {
 
-				else {$data['SEOTitle'] = $parent -> Title;}
+                foreach ($data['productsList'] as $key => $value) {
 
-				if($parent -> SEOKeyword){ $data['SEOKeyword'] = $parent -> SEOKeyword;}
+                    $value->Description = $this->trim_text($value->Description, 150);
 
-				if($parent -> SEODescription){ $data['SEODescription'] = $parent -> SEODescription;}
+                }
 
+            }
 
+            $data['links'] = $this->pagination->create_links();
 
-				// $this -> load -> library('pagination');
+            // $breadcrumb_list = $this -> products_model -> Get_breadcrumb_by_brand($parent -> SortingResID);
 
-				// $config["base_url"] = base_url() . $parent -> Slug;
+            // $breadcrumb_list = array_reverse($breadcrumb_list);
 
-				// $config["total_rows"] = $this -> products_model -> Get_pagination_number_by_res($parent_list);
+            // $this -> breadcrumb -> append_crumb('Trang chủ', base_url());
 
-				// $config["per_page"] = $data["per_page"] = 8;
+            // foreach ($breadcrumb_list as $bl){
 
-				// $config["uri_segment"] = 2;
+            // 	$this -> breadcrumb -> append_crumb($bl -> Title, base_url() . $bl -> Slug);
 
-				// $this -> pagination -> initialize($config);
+            // }
 
+            // $data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
 
+            // $data['latest_news'] = $this -> news_model -> Get_latest_news(3);
 
-				$this -> load -> library('pagination');
+            $data['breadcrumb'] = $this->breadcrumb->output();
 
-				$config["base_url"] = base_url() . $slug;
 
-				$config["uri_segment"] = 2;
+            $this->load->view('guest/main_product1.php', $data);
 
-				$config["total_rows"] = $this -> products_model -> Get_pagination_number_by_res($parent_list);
+        } else if ($this->news_model->Get_details($slug) || $this->categories_news_model->Get_details($slug)) {
 
-				$config["per_page"] = $data["per_page"] = 9;
+            $this->news($slug);
 
-				$config['next_link'] = "sau";
+        } else {
 
-				$config['prev_link'] = "trước";
+            $data['product'] = $product = $this->products_model->Get_details($slug);
 
-				$config['last_link'] = 'cuối';
+            if (empty($data['product'])) {
 
-				$config['first_link'] = 'đầu';
-				$config['prefix'] = 'trang-';
+                redirect('error-404.html');
 
-				// $config['use_page_numbers'] = TRUE;
+            }
 
-				$this -> pagination -> initialize($config);
+            $data['productImage'] = $this->products_model->Prd_image_get_all($product->ProductsID);
 
-				$data['links'] = $this -> pagination -> create_links();
 
-				$data['page'] = ($this -> uri -> segment(2)) ? (int)str_replace(array('trang-', '.html'), "", $this -> uri -> segment(2)) : 1;
+            $data['current_category'] = $current_category = $this->categories_product_model->Get_details_by_id($product->CategoriesProductsID);
 
-				
-				$offset = ($data['page'] * $config['per_page']) - $config['per_page'];
+            // $data['brand'] = $brand = $this -> sorting_brand_model -> Get_details_by_id($product -> SortingBrandID);
 
-				if (($data['page'] * $config["per_page"]) < $config["total_rows"]) {
-					$data['next_rel'] = '<link rel="next" href="'.base_url($slug).'/trang-'.($data['page'] + 1).'.html">';
-				}
-				if ($data['page'] > 1) {
-					$data['prev_rel'] = '<link rel="prev" href="'.base_url($slug).'/trang-'.($data['page'] - 1).'.html">';
-				}
-				$data['productsList'] = $this -> products_model -> Get_pagination_product_by_res($config["per_page"], $offset, $parent_list);
 
-				if ($data['productsList']) {
+            if ($product->SEOTitle) {
+                $data['SEOTitle'] = $product->SEOTitle;
+            } else {
+                $data['SEOTitle'] = $product->Title;
+            }
 
-					foreach ($data['productsList'] as $key => $value) {
+            if ($product->SEOKeyword) {
+                $data['SEOKeyword'] = $product->SEOKeyword;
+            }
 
-						$value -> Description = $this->trim_text($value -> Description, 150);
+            if ($product->SEODescription) {
+                $data['SEODescription'] = $product->SEODescription;
+            }
 
-					}
 
-				}
+            $this->breadcrumb->append_crumb('Trang chủ', base_url());
 
-				$data['links'] = $this -> pagination -> create_links();
+            $breadcrumb_list = $this->products_model->Get_breadcrumb($product->CategoriesProductsID);
 
-				// $breadcrumb_list = $this -> products_model -> Get_breadcrumb_by_brand($parent -> SortingResID);
+            $breadcrumb_list = array_reverse($breadcrumb_list);
 
-				// $breadcrumb_list = array_reverse($breadcrumb_list);
+            foreach ($breadcrumb_list as $bl) {
 
-				// $this -> breadcrumb -> append_crumb('Trang chủ', base_url());
+                $this->breadcrumb->append_crumb($bl->Title, base_url() . $bl->Slug);
 
-				// foreach ($breadcrumb_list as $bl){
+            }
 
-				// 	$this -> breadcrumb -> append_crumb($bl -> Title, base_url() . $bl -> Slug);
+            $this->breadcrumb->append_crumb($product->Title, base_url() . $product->Slug);
 
-				// }
+            // $data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
 
-				// $data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
+            // $data['latest_news'] = $this -> news_model -> Get_latest_news(3);
 
-				// $data['latest_news'] = $this -> news_model -> Get_latest_news(3);
+            $data['signature'] = $this->news_model->News_get_by_cate_id(4);
+            $data['trend'] = $this->news_model->News_get_by_cate_id(3);
 
-				$data['breadcrumb'] = $this -> breadcrumb -> output();
+            // $data['hightlight'] = $this -> products_model -> Get_hightlight($product -> Hightlight);
 
+            $data['tags'] = $this->products_model->get_product_tags($product->Tags);
 
+            $data['relative'] = $this->products_model->Get_relative($current_category->CategoriesProductsID, $product->ProductsID);
 
-				$this -> load -> view('guest/main_product1.php', $data);
+            if ($data['relative']) {
 
-			} else if($this -> news_model -> Get_details($slug) || $this -> categories_news_model -> Get_details($slug)){
+                $data['relative'] = array_chunk($data['relative'], 4);
 
-				$this -> news($slug);
+            }
 
-			} else {
 
-				$data['product'] = $product = $this -> products_model -> Get_details($slug);
+            // $data['relative_brand'] = $this -> products_model -> Get_relative_by_brand($brand -> SortingBrandID, $product -> ProductsID);
 
-				if(empty($data['product'])) {
+            $data['breadcrumb'] = $this->breadcrumb->output();
 
-					redirect('error-404.html');
+            $this->load->view('guest/main_product2.php', $data);
 
-				}
+        }
 
-				$data['productImage'] = $this -> products_model -> Prd_image_get_all($product -> ProductsID);
+    }
 
 
+    function news($slug = "")
+    {
 
-				$data['current_category'] = $current_category = $this -> categories_product_model -> Get_details_by_id($product -> CategoriesProductsID);
+        global $lang;
 
-				// $data['brand'] = $brand = $this -> sorting_brand_model -> Get_details_by_id($product -> SortingBrandID);
+        $data = $this->main_model->general();
 
+        $data['news_cate'] = $this->categories_news_model->Get_main_categories();
 
 
-				if($product -> SEOTitle){ $data['SEOTitle'] = $product -> SEOTitle;}
+        if (!$slug) {
 
-				else {$data['SEOTitle'] = $product -> Title;}
+            redirect('error-404.html');
 
-				if($product -> SEOKeyword){ $data['SEOKeyword'] = $product -> SEOKeyword;}
+        } else if ($this->categories_news_model->Get_details($slug)) {
 
-				if($product -> SEODescription){ $data['SEODescription'] = $product -> SEODescription;}
+            $data['signature'] = $this->news_model->News_get_by_cate_id(4);
+            $data['trend'] = $this->news_model->News_get_by_cate_id(3);
 
-					
+            $data['parent'] = $parent = $this->categories_news_model->Get_details($slug);
 
-				$this -> breadcrumb -> append_crumb('Trang chủ', base_url());
+            $parent_list = $this->categories_news_model->Get_categories_tree($data['parent']->CategoriesNewsID);
 
-				$breadcrumb_list = $this -> products_model -> Get_breadcrumb($product -> CategoriesProductsID);
+            $parent_list[] = $data['parent']->CategoriesNewsID;
 
-				$breadcrumb_list = array_reverse($breadcrumb_list);
+            $data['news'] = new StdClass();
 
-				foreach ($breadcrumb_list as $bl){
+            $data['news']->Slug = 0;
 
-					$this -> breadcrumb -> append_crumb($bl -> Title, base_url() . $bl -> Slug);
 
-				}
+            if ($parent->SEOTitle) {
+                $data['SEOTitle'] = $parent->SEOTitle;
+            } else {
+                $data['SEOTitle'] = $parent->Title;
+            }
 
-				$this -> breadcrumb -> append_crumb($product -> Title, base_url() . $product -> Slug);
+            if ($parent->SEOKeyword) {
+                $data['SEOKeyword'] = $parent->SEOKeyword;
+            }
 
-				// $data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
+            if ($parent->SEODescription) {
+                $data['SEODescription'] = $parent->SEODescription;
+            }
 
-				// $data['latest_news'] = $this -> news_model -> Get_latest_news(3);
 
-				$data['signature'] = $this -> news_model -> News_get_by_cate_id(4);
-				$data['trend'] = $this -> news_model -> News_get_by_cate_id(3);
+            $this->load->library('pagination');
 
-				// $data['hightlight'] = $this -> products_model -> Get_hightlight($product -> Hightlight);
+            $config["base_url"] = base_url() . $parent->Slug;
 
-				$data['tags'] = $this -> products_model -> get_product_tags($product -> Tags);
+            $config["total_rows"] = $this->news_model->Get_pagination_number($parent_list);
 
-				$data['relative'] = $this -> products_model -> Get_relative($current_category -> CategoriesProductsID, $product -> ProductsID);
+            $config["per_page"] = $data["per_page"] = 9;
 
-				if ($data['relative']) {
+            $config["uri_segment"] = 2;
 
-					$data['relative'] = array_chunk($data['relative'], 4);
+            // $config['page_query_string'] = TRUE;
 
-				}
+            // $config['query_string_segment'] = 'trang';
 
+            // $config["enable_query_strings"] = TRUE;
+            $config['prefix'] = 'trang-';
+            $this->pagination->initialize($config);
+            $data['page'] = ($this->uri->segment(2)) ? (int)str_replace(array('trang-', '.html'), "", $this->uri->segment(2)) : 1;
+            $offset = ($data['page'] * $config['per_page']) - $config['per_page'];
 
-				// $data['relative_brand'] = $this -> products_model -> Get_relative_by_brand($brand -> SortingBrandID, $product -> ProductsID);
+            $data['newsList'] = $this->news_model->Get_pagination_news($config["per_page"], $offset, $parent_list);
 
-				$data['breadcrumb'] = $this -> breadcrumb -> output();
+            if ($data['newsList']) {
+                foreach ($data['newsList'] as $key => $value) {
+                    $value->Body = $this->trim_text($value->Body, 650);
+                }
+            }
 
-				$this -> load -> view('guest/main_product2.php', $data);
+            $data['links'] = $this->pagination->create_links();
 
-			}
+            $breadcrumb_list = $this->categories_news_model->Get_breadcrumb($parent->CategoriesNewsID);
 
-		}
+            $breadcrumb_list = array_reverse($breadcrumb_list);
 
+            $this->breadcrumb->append_crumb('Trang chủ', base_url());
 
+            foreach ($breadcrumb_list as $bl) {
 
-		function news($slug = ""){
+                $this->breadcrumb->append_crumb($bl->Title, base_url() . $bl->Slug);
 
-			global $lang;
+            }
 
-			$data = $this -> main_model -> general();
+            // $data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
 
-			$data['news_cate'] = $this -> categories_news_model -> Get_main_categories();
+            // $data['latest_news'] = $this -> news_model -> Get_latest_news(3);
 
-			
 
-			if(!$slug){
+            $data['breadcrumb'] = $this->breadcrumb->output();
 
-				redirect('error-404.html');
+            $data['menu'] = $this->menu_model->Menu_get_all($slug);
 
-			} else if ($this -> categories_news_model -> Get_details($slug)) {
 
-				$data['signature'] = $this -> news_model -> News_get_by_cate_id(4);
-				$data['trend'] = $this -> news_model -> News_get_by_cate_id(3);
+            $this->load->view('guest/main_news1.php', $data);
 
-				$data['parent'] = $parent = $this -> categories_news_model -> Get_details($slug);
+        } else {
 
-				$parent_list = $this -> categories_news_model -> Get_categories_tree($data['parent'] -> CategoriesNewsID);
+            $data['signature'] = $this->news_model->News_get_by_cate_id(4);
+            $data['trend'] = $this->news_model->News_get_by_cate_id(3);
 
-				$parent_list[] = $data['parent'] -> CategoriesNewsID;
+            $data['news'] = $news = $this->news_model->Get_details($slug);
 
-				$data['news'] = new StdClass();
+            if (empty($data['news'])) {
 
-				$data['news'] -> Slug = 0;
+                redirect('error-404.html');
 
+            }
 
+            $data['parent'] = $parent = $this->categories_news_model->Get_details_by_id($news->CategoriesNewsID);
 
-				if($parent -> SEOTitle){ $data['SEOTitle'] = $parent -> SEOTitle;}
+            // $data['news_hightlight'] = $this -> news_model -> get_news_hightlight($news -> Hightlight);
 
-				else {$data['SEOTitle'] = $parent -> Title;}
+            $data['news_tag'] = $this->news_model->get_news_tags($news->Tags);
 
-				if($parent -> SEOKeyword){ $data['SEOKeyword'] = $parent -> SEOKeyword;}
 
-				if($parent -> SEODescription){ $data['SEODescription'] = $parent -> SEODescription;}
+            if ($news->SEOTitle) {
+                $data['SEOTitle'] = $news->SEOTitle;
+            } else {
+                $data['SEOTitle'] = $news->Title;
+            }
 
+            if ($news->SEOKeyword) {
+                $data['SEOKeyword'] = $news->SEOKeyword;
+            }
 
+            if ($news->SEODescription) {
+                $data['SEODescription'] = $news->SEODescription;
+            }
 
-				$this -> load -> library('pagination');
 
-				$config["base_url"] = base_url() . $parent -> Slug;
+            $this->breadcrumb->append_crumb("Trang chủ", base_url());
 
-				$config["total_rows"] = $this -> news_model -> Get_pagination_number($parent_list);
+            $breadcrumb_list = $this->categories_news_model->Get_breadcrumb($news->CategoriesNewsID);
 
-				$config["per_page"] = $data["per_page"] = 9;
+            $breadcrumb_list = array_reverse($breadcrumb_list);
 
-				$config["uri_segment"] = 2;
+            foreach ($breadcrumb_list as $bl) {
 
-				// $config['page_query_string'] = TRUE;
+                $this->breadcrumb->append_crumb($bl->Title, base_url() . $bl->Slug);
 
-				// $config['query_string_segment'] = 'trang';
+            }
+            $this->breadcrumb->append_crumb($news->Title, base_url() . $news->Slug);
 
-				// $config["enable_query_strings"] = TRUE;
-				$config['prefix'] = 'trang-';
-				$this -> pagination -> initialize($config);
-				$data['page'] = ($this -> uri -> segment(2)) ? (int)str_replace(array('trang-', '.html'), "", $this -> uri -> segment(2)) : 1;
-				$offset = ($data['page'] * $config['per_page']) - $config['per_page'];
+            $data['breadcrumb'] = $this->breadcrumb->output();
 
-				$data['newsList'] = $this -> news_model -> Get_pagination_news($config["per_page"], $offset, $parent_list);
+            $data['static_news'] = $this->news_model->Get_details_by_id(54);
 
-				if ($data['newsList']) {
-					foreach ($data['newsList'] as $key => $value) {
-						$value -> Body = $this->trim_text($value -> Body, 650);
-					}
-				}
+            // $data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
 
-				$data['links'] = $this -> pagination -> create_links();
+            // $data['latest_news'] = $this -> news_model -> Get_latest_news(3);
 
-				$breadcrumb_list = $this -> categories_news_model -> Get_breadcrumb($parent -> CategoriesNewsID);
+            $data['relative'] = $this->news_model->Get_relative($parent->CategoriesNewsID);
 
-				$breadcrumb_list = array_reverse($breadcrumb_list);
+            $data['menu'] = $this->menu_model->Menu_get_all($slug);
 
-				$this -> breadcrumb -> append_crumb('Trang chủ', base_url());
+            $this->load->view('guest/main_news2.php', $data);
 
-				foreach ($breadcrumb_list as $bl){
+        }
 
-					$this -> breadcrumb -> append_crumb($bl -> Title, base_url() . $bl -> Slug);
+    }
 
-				}
 
-				// $data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
+    function news_tags($tags)
+    {
 
-				// $data['latest_news'] = $this -> news_model -> Get_latest_news(3);
+        global $lang;
 
+        $data = $this->main_model->general();
 
-				$data['breadcrumb'] = $this -> breadcrumb -> output();
+        $data['news_cate'] = $this->categories_news_model->Get_main_categories();
 
-				$data['menu'] = $this -> menu_model -> Menu_get_all($slug);
+        if (!$tags) {
 
+            redirect('error-404.html');
 
+        } else {
 
-				$this -> load -> view('guest/main_news1.php', $data);
+            $data['tag'] = $tag = $this->news_model->Get_tag_details($tags);
 
-			} else {
 
-				$data['signature'] = $this -> news_model -> News_get_by_cate_id(4);
-				$data['trend'] = $this -> news_model -> News_get_by_cate_id(3);
+            if ($tag->SEOTitle) {
+                $data['SEOTitle'] = $tag->SEOTitle;
+            } else {
+                $data['SEOTitle'] = $tag->Title;
+            }
 
-				$data['news'] = $news = $this -> news_model -> Get_details($slug);
+            if ($tag->SEOKeyword) {
+                $data['SEOKeyword'] = $tag->SEOKeyword;
+            }
 
-				if(empty($data['news'])) {
+            if ($tag->SEODescription) {
+                $data['SEODescription'] = $tag->SEODescription;
+            }
 
-					redirect('error-404.html');
 
-				}
+            $this->load->library('pagination');
 
-				$data['parent'] = $parent = $this -> categories_news_model -> Get_details_by_id($news -> CategoriesNewsID);
+            $config["base_url"] = base_url() . 'tag-tin-tuc/' . $tags;
 
-				// $data['news_hightlight'] = $this -> news_model -> get_news_hightlight($news -> Hightlight);
+            $config["total_rows"] = $this->news_model->Get_tag_pagination_number($tag->TagsID);
 
-				$data['news_tag'] = $this -> news_model -> get_news_tags($news -> Tags);
+            $config["per_page"] = $data["per_page"] = 9;
 
+            $config["uri_segment"] = 3;
 
+            $this->pagination->initialize($config);
 
-				if($news -> SEOTitle){ $data['SEOTitle'] = $news -> SEOTitle;}
 
-				else {$data['SEOTitle'] = $news -> Title;}
+            $data['page'] = ($this->uri->segment(3)) ? $this->uri->segment(3) : 1;
 
-				if($news -> SEOKeyword){ $data['SEOKeyword'] = $news -> SEOKeyword;}
+            $offset = ($data['page'] * $config['per_page']) - $config['per_page'];
 
-				if($news -> SEODescription){ $data['SEODescription'] = $news -> SEODescription;}
+            $data['newsList'] = $this->news_model->Get_tag_pagination_news($config["per_page"], $offset, $tag->TagsID);
 
+            $data['links'] = $this->pagination->create_links();
 
 
-				$this -> breadcrumb -> append_crumb("Trang chủ", base_url());
+            $this->breadcrumb->append_crumb("Trang chủ", base_url());
 
-				$breadcrumb_list = $this -> categories_news_model -> Get_breadcrumb($news -> CategoriesNewsID);
+            $this->breadcrumb->append_crumb("Tags: " . $tag->Title, base_url() . "tag-tin-tuc/" . $tag->Slug);
 
-				$breadcrumb_list = array_reverse($breadcrumb_list);
+            $data['breadcrumb'] = $this->breadcrumb->output();
 
-				foreach ($breadcrumb_list as $bl){
 
-					$this -> breadcrumb -> append_crumb($bl -> Title, base_url() . $bl -> Slug);
+            // $data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
 
-				}
-				$this -> breadcrumb -> append_crumb($news -> Title, base_url() . $news -> Slug);
+            // $data['latest_news'] = $this -> news_model -> Get_latest_news(3);
 
-				$data['breadcrumb'] = $this -> breadcrumb -> output();
 
-				$data['static_news'] = $this -> news_model -> Get_details_by_id(54);
+            $this->load->view('guest/main_tag_news.php', $data);
 
-				// $data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
+        }
 
-				// $data['latest_news'] = $this -> news_model -> Get_latest_news(3);
+    }
 
-				$data['relative'] = $this -> news_model -> Get_relative($parent -> CategoriesNewsID);
 
-				$data['menu'] = $this -> menu_model -> Menu_get_all($slug);
+    function search()
+    {
 
-				$this -> load -> view('guest/main_news2.php', $data);
+        global $lang;
 
-			}
+        $data = $this->main_model->general();
 
-		}
+        if (isset($_GET['t'])) $data['SEOTitle'] = str_replace("[keyword]", $_GET['t'], $data['seo']['SEOTitleSearch']);
+        if (isset($_GET['t'])) $data['SEOKeyword'] = str_replace("[keyword]", $_GET['t'], $data['seo']['SEOKeywordSearch']);
+        if (isset($_GET['t'])) $data['SEODescription'] = str_replace("[keyword]", $_GET['t'], $data['seo']['SEODescriptionSearch']);
 
+        $option = array();
 
+        if ($this->input->get('t')) {
 
-		function news_tags($tags){
+            $option['t'] = $this->input->get('t');
 
-			global $lang;
+        } else {
+            $option['t'] = "";
+        }
 
-			$data = $this -> main_model -> general();
+        if ($this->input->get('dien-tich')) {
 
-			$data['news_cate'] = $this -> categories_news_model -> Get_main_categories();
+            $option['dien-tich'] = $this->input->get('dien-tich');
 
-			if(!$tags){
+        } else {
+            $option['dien-tich'] = "";
+        }
 
-				redirect('error-404.html');
+        if ($this->input->get('phong')) {
 
-			} else {
+            $option['phong'] = $this->input->get('phong');
 
-				$data['tag'] = $tag = $this -> news_model -> Get_tag_details($tags);
+        } else {
+            $option['phong'] = "";
+        }
 
+        if ($this->input->get('mausac')) {
 
+            $option['mausac'] = $this->input->get('mausac');
 
-				if($tag -> SEOTitle){ $data['SEOTitle'] = $tag -> SEOTitle;}
+        } else {
+            $option['mausac'] = "";
+        }
 
-				else {$data['SEOTitle'] = $tag -> Title;}
+        if ($this->input->get('phong-cach')) {
 
-				if($tag -> SEOKeyword){ $data['SEOKeyword'] = $tag -> SEOKeyword;}
+            $option['phong-cach'] = $this->input->get('phong-cach');
 
-				if($tag -> SEODescription){ $data['SEODescription'] = $tag -> SEODescription;}
+        } else {
+            $option['phong-cach'] = "";
+        }
 
+        $this->load->library('pagination');
 
+        $temp_trang = $_GET;
 
-				$this -> load -> library('pagination');
+        unset($temp_trang['trang']);
 
-				$config["base_url"] = base_url() . 'tag-tin-tuc/' . $tags;
+        $data['current_query_trang'] = http_build_query($temp_trang);
 
-				$config["total_rows"] = $this -> news_model -> Get_tag_pagination_number($tag -> TagsID);
+        $this->load->library('pagination');
 
-				$config["per_page"] = $data["per_page"] = 9;
+        $temp_trang = $_GET;
+        unset($temp_trang['trang']);
+        $data['current_query_trang'] = http_build_query($temp_trang);
+        $config["base_url"] = base_url() . 'tim-kiem' . '?' . $data['current_query_trang'];
 
-				$config["uri_segment"] = 3;
+        $config["total_rows"] = $this->products_model->Get_search_pagination_number($option);
+        $config["per_page"] = $data["per_page"] = 9;
+        $config["uri_segment"] = 2;
 
-				$this -> pagination -> initialize($config);
+        $config['enable_query_strings'] = TRUE;
+        $config['page_query_string'] = TRUE;
+        $config['query_string_segment'] = 'trang';
+        $this->pagination->initialize($config);
 
-						
-
-				$data['page'] = ($this -> uri -> segment(3)) ? $this -> uri -> segment(3) : 1;
-
-				$offset = ($data['page'] * $config['per_page']) - $config['per_page'];
-
-				$data['newsList'] = $this -> news_model -> Get_tag_pagination_news($config["per_page"], $offset, $tag -> TagsID);
-
-				$data['links'] = $this -> pagination -> create_links();
-
-
-
-				$this -> breadcrumb -> append_crumb("Trang chủ", base_url());
-
-				$this -> breadcrumb -> append_crumb("Tags: " . $tag -> Title, base_url() ."tag-tin-tuc/". $tag -> Slug);
-
-				$data['breadcrumb'] = $this -> breadcrumb -> output();
-
-
-
-				// $data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
-
-				// $data['latest_news'] = $this -> news_model -> Get_latest_news(3);
-
-
-
-				$this -> load -> view('guest/main_tag_news.php', $data);
-
-			}
-
-		}
-
-
-
-		function search(){
-
-			global $lang;
-
-			$data = $this -> main_model -> general();
-
-
-			$data['SEOTitle'] = str_replace("[keyword]", $_GET['t'], $data['seo']['SEOTitleSearch']);
-			$data['SEOKeyword'] = str_replace("[keyword]", $_GET['t'], $data['seo']['SEOKeywordSearch']);
-			$data['SEODescription'] = str_replace("[keyword]", $_GET['t'], $data['seo']['SEODescriptionSearch']);
-
-			$option = array();
-
-			if ($this->input->get('t')) {
-
-				$option['t'] = $this->input->get('t');
-
-			} else {$option['t'] ="";}
-
-			if ($this->input->get('dien-tich')) {
-
-				$option['dien-tich'] = $this->input->get('dien-tich');
-
-			}else {$option['dien-tich'] ="";}
-
-			if ($this->input->get('phong')) {
-
-				$option['phong'] = $this->input->get('phong');
-
-			}else {$option['phong'] ="";}
-
-			if ($this->input->get('mausac')) {
-
-				$option['mausac'] = $this->input->get('mausac');
-
-			}else {$option['mausac'] ="";}
-
-			if ($this->input->get('phong-cach')) {
-
-				$option['phong-cach'] = $this->input->get('phong-cach');
-
-			}else {$option['phong-cach'] ="";}
-
-			$this -> load -> library('pagination');
-
-			$temp_trang = $_GET;
-
-			unset($temp_trang['trang']);
-
-			$data['current_query_trang'] = http_build_query($temp_trang);
-
-			$this -> load -> library('pagination');
-			
-			$temp_trang = $_GET;
-			unset($temp_trang['trang']);
-			$data['current_query_trang'] = http_build_query($temp_trang);
-			$config["base_url"] = base_url() . 'tim-kiem'.'?'. $data['current_query_trang'];
-
-			$config["total_rows"] = $this -> products_model -> Get_search_pagination_number($option);
-			$config["per_page"] = $data["per_page"] = 9;
-			$config["uri_segment"] = 2;
-
-			$config['enable_query_strings'] = TRUE;
-			$config['page_query_string'] = TRUE;
-			$config['query_string_segment'] = 'trang';
-			$this -> pagination -> initialize($config);
-
-			$data['links'] = $this -> pagination -> create_links();
-			$data['page'] = ($this -> input -> get('trang')) ? (int)($this -> input -> get('trang')) : 1;
+        $data['links'] = $this->pagination->create_links();
+        $data['page'] = ($this->input->get('trang')) ? (int)($this->input->get('trang')) : 1;
 
 // var_dump($temp_trang);
 // var_dump($data['page']);
 // var_dump($config['base_url']);
 
-			$offset = ($data['page'] * $config['per_page']) - $config['per_page'];
+        $offset = ($data['page'] * $config['per_page']) - $config['per_page'];
 
-			$data['productsList'] = $this -> products_model -> Get_search_pagination_products($config["per_page"], $offset, $option);
+        $data['productsList'] = $this->products_model->Get_search_pagination_products($config["per_page"], $offset, $option);
 
-			if ($data['productsList']) {
+        if ($data['productsList']) {
 
-				foreach ($data['productsList'] as $key => $value) {
+            foreach ($data['productsList'] as $key => $value) {
 
-					$value -> Description = $this->trim_text($value -> Description, 150);
+                $value->Description = $this->trim_text($value->Description, 150);
 
-				}
+            }
 
-			}
+        }
 
-			$data['links'] = $this -> pagination -> create_links();
+        $data['links'] = $this->pagination->create_links();
 
-			$this -> breadcrumb -> append_crumb("Trang chủ", base_url());
+        $this->breadcrumb->append_crumb("Trang chủ", base_url());
 
-			$this -> breadcrumb -> append_crumb("Tìm kiếm sản phẩm", $config['base_url']);
+        $this->breadcrumb->append_crumb("Tìm kiếm sản phẩm", $config['base_url']);
 
 
+        $data['breadcrumb'] = $this->breadcrumb->output();
 
-			$data['breadcrumb'] = $this -> breadcrumb -> output();
+        // $data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
 
-			// $data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
+        // $data['latest_news'] = $this -> news_model -> Get_latest_news(3);
 
-			// $data['latest_news'] = $this -> news_model -> Get_latest_news(3);
 
+        $this->load->view('guest/main_search.php', $data);
 
+    }
 
-			$this -> load -> view('guest/main_search.php', $data);
 
-		}
+    function products_tags($tags)
+    {
 
+        global $lang;
 
+        $data = $this->main_model->general();
 
-		function products_tags($tags){
 
-			global $lang;
+        if (!$tags) {
 
-			$data = $this -> main_model -> general();
+            redirect('error-404.html');
 
+        } else {
 
+            $data['tag'] = $tag = $this->products_model->Get_tag_details($tags);
 
-			if(!$tags){
 
-				redirect('error-404.html');
+            if ($tag->SEOTitle) {
+                $data['SEOTitle'] = $tag->SEOTitle;
+            } else {
+                $data['SEOTitle'] = $tag->Title;
+            }
 
-			} else {
+            if ($tag->SEOKeyword) {
+                $data['SEOKeyword'] = $tag->SEOKeyword;
+            }
 
-				$data['tag'] = $tag = $this -> products_model -> Get_tag_details($tags);
+            if ($tag->SEODescription) {
+                $data['SEODescription'] = $tag->SEODescription;
+            }
 
 
+            $this->load->library('pagination');
 
-				if($tag -> SEOTitle){ $data['SEOTitle'] = $tag -> SEOTitle;}
+            $config["base_url"] = base_url() . 'tag-san-pham/' . $tags;
 
-				else {$data['SEOTitle'] = $tag -> Title;}
+            $config["total_rows"] = $this->products_model->Get_tag_pagination_number($tag->TagsID);
 
-				if($tag -> SEOKeyword){ $data['SEOKeyword'] = $tag -> SEOKeyword;}
+            $config["per_page"] = $data["per_page"] = 9;
 
-				if($tag -> SEODescription){ $data['SEODescription'] = $tag -> SEODescription;}
+            $config["uri_segment"] = 3;
 
+            $this->pagination->initialize($config);
 
 
-				$this -> load -> library('pagination');
+            $data['page'] = ($this->uri->segment(3)) ? $this->uri->segment(3) : 1;
 
-				$config["base_url"] = base_url() . 'tag-san-pham/' . $tags;
+            $offset = ($data['page'] * $config['per_page']) - $config['per_page'];
 
-				$config["total_rows"] = $this -> products_model -> Get_tag_pagination_number($tag -> TagsID);
+            $data['productsList'] = $this->products_model->Get_tag_pagination_products($config["per_page"], $offset, $tag->TagsID);
 
-				$config["per_page"] = $data["per_page"] = 9;
+            $data['links'] = $this->pagination->create_links();
 
-				$config["uri_segment"] = 3;
 
-				$this -> pagination -> initialize($config);
+            $this->breadcrumb->append_crumb("Trang chủ", base_url());
 
-						
+            $this->breadcrumb->append_crumb("Tags: " . $tag->Title, base_url() . "tag-san-pham/" . $tag->Slug);
 
-				$data['page'] = ($this -> uri -> segment(3)) ? $this -> uri -> segment(3) : 1;
+            $data['breadcrumb'] = $this->breadcrumb->output();
 
-				$offset = ($data['page'] * $config['per_page']) - $config['per_page'];
 
-				$data['productsList'] = $this -> products_model -> Get_tag_pagination_products($config["per_page"], $offset, $tag -> TagsID);
+            // $data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
 
-				$data['links'] = $this -> pagination -> create_links();
+            // $data['latest_news'] = $this -> news_model -> Get_latest_news(3);
 
 
+            $this->load->view('guest/main_tag_products.php', $data);
 
-				$this -> breadcrumb -> append_crumb("Trang chủ", base_url());
+        }
 
-				$this -> breadcrumb -> append_crumb("Tags: " . $tag -> Title, base_url() ."tag-san-pham/". $tag -> Slug);
+    }
 
-				$data['breadcrumb'] = $this -> breadcrumb -> output();
+    function cam_on()
+    {
 
+        $data = $this->main_model->general();
 
+        $this->form_validation->set_rules('fullname', 'Tên khách hàng', 'trim|required', array('required' => '%s không được để trống'));
+        $this->form_validation->set_rules('phone', 'Số điện thoại khách hàng', 'trim|required', array('required' => '%s không được để trống'));
 
-				// $data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
+        $this->form_validation->set_error_delimiters('<span class="error">', '</span>');
 
-				// $data['latest_news'] = $this -> news_model -> Get_latest_news(3);
+        if ($this->form_validation->run()) {
+            $this->load->model('ajaxhandle/ajax_support_online_model');
+            $result = $this->ajax_support_online_model->insertSubscribe();
+            if ($result) {
 
+                $data['message'] = 'Cám ơn bạn đã gửi thông tin đăng ký, nhân viên tư vấn của vivadecor sẽ liên hệ với bạn ngay.';
+            } else
+                $data['message'] = 'Gửi thông tin liên hệ thất bại';
+            $this->load->view('cam-on', $data);
 
+        } else
+            redirect(base_url());
 
-				$this -> load -> view('guest/main_tag_products.php', $data);
 
-			}
+    }
 
-		}
 
-		function cam_on() {
+    function trim_text($input, $length, $ellipses = true, $strip_tag = true, $strip_style = true)
+    {
 
-			$data = $this -> main_model -> general();
+        //strip tags, if desired
 
-			$this -> form_validation -> set_rules('fullname','Tên khách hàng','trim|required',array('required' => '%s không được để trống'));
-			$this -> form_validation -> set_rules('phone','Số điện thoại khách hàng','trim|required',array('required' => '%s không được để trống'));
+        if ($strip_tag) {
 
-			$this -> form_validation -> set_error_delimiters('<span class="error">', '</span>');
+            $input = strip_tags($input);
 
-			if($this -> form_validation -> run()) {
-				$this -> load -> model('ajaxhandle/ajax_support_online_model');
-				$result = $this -> ajax_support_online_model -> insertSubscribe();
-				if ($result) {
+        }
 
-					$data['message'] = 'Cám ơn bạn đã gửi thông tin đăng ký, nhân viên tư vấn của vivadecor sẽ liên hệ với bạn ngay.';
-				}else 
-					$data['message'] = 'Gửi thông tin liên hệ thất bại';
-				$this->load->view('cam-on', $data);
+        //strip tags, if desired
 
-			}else
-				redirect(base_url());
+        if ($strip_style) {
 
+            $input = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $input);
 
-		}
+        }
 
+        if ($length == 'full') {
 
+            $trimmed_text = $input;
 
+        } else {
 
+            //no need to trim, already shorter than trim length
 
-		function trim_text($input, $length, $ellipses = true, $strip_tag = true,$strip_style = true) {
+            if (strlen($input) <= $length) {
 
-			//strip tags, if desired
+                return $input;
 
-			if ($strip_tag) {
+            }
 
-				$input = strip_tags($input);
+            //find last space within length
 
-			}
+            $last_space = strrpos(substr($input, 0, $length), ' ');
 
-			//strip tags, if desired
+            $trimmed_text = substr($input, 0, $last_space);
 
-			if ($strip_style) {
+            //add ellipses (...)
 
-				$input = preg_replace('/(<[^>]+) style=".*?"/i', '$1',$input);
+            if ($ellipses) {
 
-			}
+                $trimmed_text .= '...';
 
-			if($length=='full') {
+            }
 
-				$trimmed_text=$input;
+        }
 
-			}
+        return $trimmed_text;
 
-			else {
+    }
 
-				//no need to trim, already shorter than trim length
 
-				if (strlen($input) <= $length) {
+    function sitemap()
+    {
 
-				return $input;
+        // header("Content-Type: text/xml;charset=iso-8859-1");
 
-				}
+        // $this->load->view("call-us",$data);
 
-				//find last space within length
+        header("Content-type: text/xml");
 
-				$last_space = strrpos(substr($input, 0, $length), ' ');
+        $xml_file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/sitemap.xml");
 
-				$trimmed_text = substr($input, 0, $last_space);
+        echo $xml_file;
 
-				//add ellipses (...)
+    }
 
-				if ($ellipses) {
+    function sitemap_index()
+    {
 
-				$trimmed_text .= '...';
+        // header("Content-Type: text/xml;charset=iso-8859-1");
 
-				}
+        // $this->load->view("call-us",$data);
 
-			}
+        header("Content-type: text/xml");
 
-			return $trimmed_text;
+        $xml_file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/sitemap_index.xml");
 
-		}
+        echo $xml_file;
 
+    }
 
+    function sitemap_category()
+    {
 
-		function sitemap() {
+        // header("Content-Type: text/xml;charset=iso-8859-1");
 
-			// header("Content-Type: text/xml;charset=iso-8859-1");
+        // $this->load->view("call-us",$data);
 
-			// $this->load->view("call-us",$data);
+        header("Content-type: text/xml");
 
-			header("Content-type: text/xml");
+        $xml_file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/sitemap_category.xml");
 
-			$xml_file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/sitemap.xml");
+        echo $xml_file;
 
-			echo $xml_file;
+    }
 
-		}
+    function sitemap_product()
+    {
 
-		function sitemap_index() {
+        // header("Content-Type: text/xml;charset=iso-8859-1");
 
-			// header("Content-Type: text/xml;charset=iso-8859-1");
+        // $this->load->view("call-us",$data);
 
-			// $this->load->view("call-us",$data);
+        header("Content-type: text/xml");
 
-			header("Content-type: text/xml");
+        $xml_file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/sitemap_product.xml");
 
-			$xml_file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/sitemap_index.xml");
+        echo $xml_file;
 
-			echo $xml_file;
+    }
 
-		}
+    function sitemap_news()
+    {
 
-		function sitemap_category() {
+        // header("Content-Type: text/xml;charset=iso-8859-1");
 
-			// header("Content-Type: text/xml;charset=iso-8859-1");
+        // $this->load->view("call-us",$data);
 
-			// $this->load->view("call-us",$data);
+        header("Content-type: text/xml");
 
-			header("Content-type: text/xml");
+        $xml_file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/sitemap_news.xml");
 
-			$xml_file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/sitemap_category.xml");
+        echo $xml_file;
 
-			echo $xml_file;
+    }
 
-		}
+    function sitemap_image()
+    {
 
-		function sitemap_product() {
+        // header("Content-Type: text/xml;charset=iso-8859-1");
 
-			// header("Content-Type: text/xml;charset=iso-8859-1");
+        // $this->load->view("call-us",$data);
 
-			// $this->load->view("call-us",$data);
+        header("Content-type: text/xml");
 
-			header("Content-type: text/xml");
+        $xml_file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/sitemap_image.xml");
 
-			$xml_file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/sitemap_product.xml");
+        echo $xml_file;
 
-			echo $xml_file;
+    }
 
-		}
-
-		function sitemap_news() {
-
-			// header("Content-Type: text/xml;charset=iso-8859-1");
-
-			// $this->load->view("call-us",$data);
-
-			header("Content-type: text/xml");
-
-			$xml_file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/sitemap_news.xml");
-
-			echo $xml_file;
-
-		}
-
-		function sitemap_image() {
-
-			// header("Content-Type: text/xml;charset=iso-8859-1");
-
-			// $this->load->view("call-us",$data);
-
-			header("Content-type: text/xml");
-
-			$xml_file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/sitemap_image.xml");
-
-			echo $xml_file;
-
-		}
-
-	}
+}
 
 ?>

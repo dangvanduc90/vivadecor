@@ -53,7 +53,7 @@
 				$trees = $this -> Menu($temp[$i]['MenuID'],$array,$space.'|-----',$trees);
 			}
 
-			// while($rs = mysql_fetch_assoc($sql)){
+			// while($rs = mysqli_fetch_assoc($sql)){
 			// 	$trees[] = array('id'=>$rs['cat_id'],'title'=>$space.$rs['cat_title']);
 			// 	$trees = Menu($rs['cat_id'],$space.'--',$trees);
 			// }
@@ -146,8 +146,6 @@
 				$this -> db -> select("DATE_FORMAT(menu.ModifiedDate,'%T %m-%d-%Y') as ModifiedDate",false);
 
 				$this -> db -> from("menu");
-
-				$this -> db -> where("menu.MenuID = ".$id.";");
 
 				$result = $this -> db -> get();
 

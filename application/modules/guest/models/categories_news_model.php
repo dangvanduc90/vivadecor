@@ -148,8 +148,8 @@
 			while (true) {
 				$arrChild = Array(); // array for storing children in this iteration
 				$q = "SELECT `CategoriesNewsID` FROM `categoriesnews` WHERE `Publish` = 1 AND `ParentID` IN (" . $CategoriesNewsID . ")";
-				$rs = mysql_query($q);
-				while ($r = mysql_fetch_assoc($rs)) {
+				$rs = mysqli_query($this->db->conn_id, $q);
+				while ($r = mysqli_fetch_assoc($rs)) {
 					$arrChild[] = $r['CategoriesNewsID'];
 					$arrAllChild[] = $r['CategoriesNewsID'];
 				}

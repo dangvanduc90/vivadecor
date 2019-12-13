@@ -22,9 +22,9 @@
 
                 $q = 'SELECT `CategoriesProductsID` FROM `categoriesproducts` WHERE `ParentID` IN (' . $parentId . ')';
 
-                $rs = mysql_query($q);
+                $rs = mysqli_query($this->db->conn_id, $q);
 
-                while ($r = mysql_fetch_assoc($rs)) {
+                while ($r = mysqli_fetch_assoc($rs)) {
 
                     $arrChild[] = $r['CategoriesProductsID'];
 
@@ -60,9 +60,9 @@
 
                 $q = 'SELECT `SortingBrandID` FROM `sortingbrand` WHERE `ParentID` IN (' . $parentId . ')';
 
-                $rs = mysql_query($q);
+                $rs = mysqli_query($this->db->conn_id, $q);
 
-                while ($r = mysql_fetch_assoc($rs)) {
+                while ($r = mysqli_fetch_assoc($rs)) {
 
                     $arrChild[] = $r['SortingBrandID'];
 

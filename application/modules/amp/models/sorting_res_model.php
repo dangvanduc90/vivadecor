@@ -90,9 +90,9 @@
 
                 $q = "SELECT `SortingResID` FROM `sortingres` WHERE `Publish` = 1 AND `ParentID` IN (" . $SortingResID . ")";
 
-                $rs = mysql_query($q);
+                $rs = mysqli_query($this->db->conn_id, $q);
 
-                while ($r = mysql_fetch_assoc($rs)) {
+                while ($r = mysqli_fetch_assoc($rs)) {
 
                     $arrChild[] = $r['SortingResID'];
 

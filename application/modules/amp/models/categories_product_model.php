@@ -85,8 +85,8 @@
             while (true) {
                 $arrChild = Array(); // array for storing children in this iteration
                 $q = "SELECT `CategoriesProductsID` FROM `categoriesproducts` WHERE `Publish` = 1 AND `ParentID` IN (" . $CategoriesProductsID . ")";
-                $rs = mysql_query($q);
-                while ($r = mysql_fetch_assoc($rs)) {
+                $rs = mysqli_query($this->db->conn_id, $q);
+                while ($r = mysqli_fetch_assoc($rs)) {
                     $arrChild[] = $r['CategoriesProductsID'];
                     $arrAllChild[] = $r['CategoriesProductsID'];
                 }
@@ -137,8 +137,8 @@
             while (true) {
                 $arrChild = Array(); // array for storing children in this iteration
                 $q = 'SELECT `CategoriesProductsID` FROM `categoriesproducts` WHERE `ParentID` IN (' . $parentId . ')';
-                $rs = mysql_query($q);
-                while ($r = mysql_fetch_assoc($rs)) {
+                $rs = mysqli_query($this->db->conn_id, $q);
+                while ($r = mysqli_fetch_assoc($rs)) {
                     $arrChild[] = $r['CategoriesProductsID'];
                     $arrAllChild[] = $r['CategoriesProductsID'];
                 }
