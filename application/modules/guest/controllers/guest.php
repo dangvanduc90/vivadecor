@@ -1628,6 +1628,39 @@ class Guest extends CMS_BaseController
 
     }
 
+    public function register_info()
+    {
+        $data = $this->main_model->general();
+        if ($this->input->post()) {
+            $this->form_validation->set_rules('Email', 'Email khách hàng', 'trim|required', array('required' => '%s không được để trống'));
+            $this->form_validation->set_rules('Name', 'Họ tên khách hàng', 'trim|required', array('required' => '%s không được để trống'));
+            $this->form_validation->set_rules('Phone', 'Số điện thoại khách hàng', 'trim|required', array('required' => '%s không được để trống'));
+
+            $this->form_validation->set_error_delimiters('<span class="error">', '</span>');
+            if ($this->form_validation->run()) {
+                $this->load->model('guest/contact_model');
+                $result = $this->contact_model->submit_contact();
+
+                // Send email with new email address and its activation link
+
+                $type = 'register-info';
+                $dataEmail = [];
+                $dataEmail['site_name'] = base_url();
+                $dataEmail['username'] = $this->input->post('Name');
+                $dataEmail['email'] = $this->input->post('Email');
+                $this->load->library('email');
+                $this->email->from($this->config->item('webmaster_email', 'tank_auth'), $this->config->item('website_name', 'tank_auth'));
+                $this->email->to($this->input->post('Email'));
+                $this->email->subject('Đăng ký thông tin liên hệ trên ' . base_url() . ' thành công');
+                $this->email->message($this->load->view('email/'.$type.'-html', $dataEmail, TRUE));
+                $this->email->set_alt_message($this->load->view('email/'.$type.'-txt', $dataEmail, TRUE));
+                $this->email->send();
+
+                $data['message'] = $result ? 'Cám ơn bạn đã gửi thông tin đăng ký, nhân viên tư vấn của vivadecor sẽ liên hệ với bạn ngay.' : 'Gửi thông tin liên hệ thất bại';
+            }
+        }
+        $this->load->view('register-info', $data);
+    }
 
     function trim_text($input, $length, $ellipses = true, $strip_tag = true, $strip_style = true)
     {

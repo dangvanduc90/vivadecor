@@ -97,6 +97,7 @@ switch ($_SERVER['HTTP_HOST']) {
 		// $route['^((vi|en)/)?tim-kiem.html'] = "guest/search";
 		$route['^((vi|en)/)?tim-kiem'] = "guest/search";
 		$route['^((vi)/)?cam-on.html'] = "guest/cam_on";
+		$route['^((vi)/)?register-info.html'] = "guest/register_info";
 		$route['^((vi|en)/)?error-404.html'] = "guest/error_404";
 
 		$route['seo/sitemap\.xml'] = "guest/sitemap";

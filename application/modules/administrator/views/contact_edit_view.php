@@ -1,6 +1,6 @@
 <div class="grid_12">
     <form method="post" action="<?= current_url();?>" name="form-edit" id="form-edit" accept-charset="utf-8">
-        <div class="header-content">Thông tin chi tiết khách hàng liên hệ</div>
+        <div class="header-content">Thông tin chi tiết khách hàng đăng ký thông tin</div>
         <div class="clear"></div>
         <div class="command">
             <span><a href="<?= base_url()?>administrator/contact/customers">Quay lại danh sách</a></span>
@@ -44,23 +44,23 @@
                             </td>
                         </tr>
 
-                        <tr>
-                            <td class="key" valign="top">
-                                &nbsp;Địa chỉ
-                            </td>
-                            <td>
-                                <textarea name="newsDescription" rows="2" cols="20" id="newsDescription" class="TextInput" style="height:96px;width:400px;"><?= $contact['Address']?></textarea>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="key" valign="top">
-                                &nbsp;Nội dung liên hệ
-                            </td>
-                            <td>
-                                <textarea name="newsDescription" rows="2" cols="20" id="newsDescription" class="TextInput" style="height:96px;width:400px;"><?= $contact['Content']?></textarea>
-                            </td>
-                        </tr>
+<!--                        <tr>-->
+<!--                            <td class="key" valign="top">-->
+<!--                                &nbsp;Địa chỉ-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                <textarea name="newsDescription" rows="2" cols="20" id="newsDescription" class="TextInput" style="height:96px;width:400px;">--><?//= $contact['Address']?><!--</textarea>-->
+<!--                            </td>-->
+<!--                        </tr>-->
+<!---->
+<!--                        <tr>-->
+<!--                            <td class="key" valign="top">-->
+<!--                                &nbsp;Nội dung liên hệ-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                <textarea name="newsDescription" rows="2" cols="20" id="newsDescription" class="TextInput" style="height:96px;width:400px;">--><?//= $contact['Content']?><!--</textarea>-->
+<!--                            </td>-->
+<!--                        </tr>-->
                         
                     </tbody></table>
                 </div>

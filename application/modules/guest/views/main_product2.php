@@ -497,23 +497,6 @@
        }
 
 </script>
-<div class="share-buttons-vertical">
-	<div class="mb-15">
-		<div class="fb-share-button" data-href="<?= current_url(); ?>" data-layout="box_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?= current_url(); ?>">Share</a></div>
-	</div>
-	<div class="mb-15">
-		<!-- Đặt thẻ này vào nơi bạn muốn nút chia sẻ kết xuất. -->
-		<div class="g-plus" data-action="share" data-annotation="vertical-bubble" data-height="60" data-href="<?= current_url(); ?>"></div>
-	</div>
-	<div class="mb-15">
-		<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?= current_url(); ?>" data-via="doccohan90">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-	</div>
-	<div class="mb-15">
-		<script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
-		<script type="IN/Share" data-url="<?= current_url(); ?>" data-counter="top"></script>
-	</div>
-</div>
-
 <div class="mobile-share-buttons">
 	<div class="facebook" href="javascript:void(0);" onclick="window.open(&quot;https://www.facebook.com/sharer.php?u=<?= current_url(); ?>&quot;,
 		&quot;displayWindow&quot;, &quot;width=640,height=480,left=350,top=170,status=no,toolbar=no,menubar=no&quot;)">
@@ -542,11 +525,6 @@
 </script>
 <script type="text/javascript">
 $(document).ready(function () {
-	$(".close-mobile-block").click(function() {
-		$(this).parent().hide();
-		$(".share-buttons-vertical").css('display', 'block');
-	});
-
 	var owl = $("#list");
 	owl.owlCarousel({
 		items : 4

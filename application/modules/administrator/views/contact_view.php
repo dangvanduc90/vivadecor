@@ -1,7 +1,7 @@
 <div class="grid_12">
     <form method="post" action="<?= current_url();?>
         /save" name="form-edit" id="form-edit" accept-charset="utf-8">
-        <div class="header-content">Thông tin khách hàng liên hệ</div>
+        <div class="header-content">Thông tin khách hàng đăng ký thông tin</div>
         <div class="clear"></div>
         <div class="command">
             <span>

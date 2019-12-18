@@ -240,7 +240,7 @@
 
 							<!-- <li><a href="<?= base_url()?>administrator/comment">Bình luận khách hàng</a></li> -->
 
-							<!-- <li><a href="<?= base_url()?>administrator/contact/customers">Khách hàng liên hệ</a></li> -->
+							 <li><a href="<?= base_url()?>administrator/contact/customers">Đăng ký thông tin</a></li>
 
 							<!-- <li><a class="last" href="<?= base_url()?>administrator/contact/text">Thông tin liên hệ</a></li> -->
 

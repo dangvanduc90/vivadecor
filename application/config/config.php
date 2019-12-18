@@ -18,7 +18,7 @@ $config['modules_locations'] = array(
 | path to your installation.
 |
 */
-$config['base_url']	= 'https://localhost/vivadecor/';
+$config['base_url']	= 'https://vivadecor.test/vivadecor/';
 /*
 |--------------------------------------------------------------------------
 | Index File
