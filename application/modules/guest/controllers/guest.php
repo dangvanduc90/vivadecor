@@ -56,10 +56,16 @@ class Guest extends CMS_BaseController
         $data['end_page'] = $end_page = $total_page;
         $start_page = 1;
         $offset = $start * $display;
-        $data['productsList'] = $this->products_model->Get_new_pagination_product($display, $offset);
-        if ($data['productsList']) {
-            foreach ($data['productsList'] as $key => $value) {
-                $value->Description = $this->trim_text($value->Description, 150);
+        $data['productsListBySection'] = $this->products_model->list_products_group_by_section();
+
+//        echo "<pre>";
+//        var_dump($data['productsListBySection']);
+//        die;
+        if ($data['productsListBySection']) {
+            foreach ($data['productsListBySection'] as $section) {
+                foreach ($section['products'] as $value) {
+                    $value->Description = $this->trim_text($value->Description, 150);
+                }
             }
         }
 

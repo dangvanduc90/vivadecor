@@ -187,6 +187,7 @@
             $this -> input -> post('prdHightlight') ? $prdHightlight = implode(",",$this -> input -> post('prdHightlight')) : $prdHightlight = "";
             $this -> input -> post('submit_type') ? $submit_type = $this -> input -> post('submit_type') : $submit_type = "single";
 
+            $this -> input -> post('sections') ? $sections = $this -> input -> post('sections') : $sections = [];
             $data = array(
 						'Title' => $Title,
 						'SKU' => $SKU,
@@ -231,7 +232,8 @@
 						'SortingResID' => $SortingResID,
 						'SortingChannelID' => $SortingChannelID,
 						'SortingPriceID' => $SortingPriceID,
-						'Hightlight' => $prdHightlight
+						'Hightlight' => $prdHightlight,
+						'sections' => $sections,
 					);
             return $data;
         }
@@ -286,7 +288,7 @@
 						'SortingPriceID' => $receivedata['SortingPriceID'],
 
 						'CreatedBy' => $this -> session -> userdata('userid'), // get from session
-						'Hightlight' => $receivedata['Hightlight']
+						'Hightlight' => $receivedata['Hightlight'],
 					);
 			$this -> db -> insert('products',$data);
 
@@ -349,84 +351,14 @@
                         }
                     }
 				}
+
+                $this->load->model('sections_products_pivot_model');
+                $this->sections_products_pivot_model->add_by_product_id($prdid, $receivedata['sections']);
+
 				return true;
 			}
 
 			return false;
-		}
-
-		public function Products_fast_insert() {
-			// @param : recicedata lay ve du lieu khi submit form sau khi da kiem tra cac dieu kien cho phep
-			$receivedata = $this -> check_input_field();
-			if($receivedata['submit_type'] && $receivedata['submit_type'] == 'single'){
-				foreach ($something as $records){
-					$temp_id = $this -> Product_get_newsest_id();
-					$newest_id = $temp_id['auto_increment'];
-					$data = array(
-								'Title' => 'Sản phẩm nhanh số ' . $newest_id,
-								'CategoriesProductsID' => $receivedata['CategoriesProductsID'],
-								'SortingBrandID' => $receivedata['SortingBrandID'],
-								'Publish' => $receivedata['Publish'],
-								'Orders' => $receivedata['Orders'],
-								'Slug' => $this -> gen_slug('Sản phẩm nhanh số ' . $newest_id),
-								'ImageURL' => $records,
-								'CreatedBy' => $this -> session -> userdata('userid'), // get from session
-							);
-					$this -> db -> insert('products',$data);
-
-					/*
-					** Kiem tra xem viec insert vao db co thanh cong hay khong
-					*/
-					if($this -> db -> affected_rows() > 0) {
-						return true;
-					}
-					return false;
-				}
-			} else if($receivedata['submit_type'] && $receivedata['submit_type'] == 'multi'){
-				$temp_id = $this -> Product_get_newsest_id();
-				$newest_id = $temp_id['auto_increment'];
-				$data = array(
-							'Title' => 'Sản phẩm nhanh số ' . $newest_id,
-							'CategoriesProductsID' => $receivedata['CategoriesProductsID'],
-							'SortingBrandID' => $receivedata['SortingBrandID'],
-							'Publish' => $receivedata['Publish'],
-							'Orders' => $receivedata['Orders'],
-							'Slug' => $this -> gen_slug('Sản phẩm nhanh số ' . $newest_id),
-							'ImageURL' => $something[0],
-							'CreatedBy' => $this -> session -> userdata('userid'), // get from session
-						);
-				$this -> db -> insert('products',$data);
-
-				/*
-				** Kiem tra xem viec insert vao db co thanh cong hay khong
-				*/
-				if($this -> db -> affected_rows() > 0) {
-
-					$prdid = $this -> db -> insert_id();
-					$imgarray = array_shift($something);
-					if($imgarray != false) {
-
-						$this -> load -> model("images_product_model");
-
-						/*
-						** Neu co anh? nguoi dung them vao, thi insert vao db bang cach dung vong lap for ben duoi
-						*/
-						for($i=0; $i < count($imgarray); $i++){
-	                        /*
-							** Thuc hien insert vao db
-							** @param : + $imgarray[$i] : url cua anh muon insert vao db
-							**			+ $prdid : Chcinh id cua product muon insert anh? cho no
-							**			+ $orderarray[$i] : la thu tu hien thi cua tung anh. co the rong~ cung~ duoc.
-	                        */
-	                        $this -> images_product_model -> Prd_image_insert_single($imgarray[$i],"","",$prdid,"",999);
-	                    }
-					}
-					return true;
-				}
-				return false;
-			} else {
-				return false;
-			}
 		}
 
 		//update product
@@ -541,6 +473,11 @@
 	                        }
 	                    }
 					}
+
+
+                    $this->load->model('sections_products_pivot_model');
+                    $this->sections_products_pivot_model->delete_by_product_id($prdid);
+                    $this->sections_products_pivot_model->add_by_product_id($prdid, $receivedata['sections']);
 					return true;
 				}
 

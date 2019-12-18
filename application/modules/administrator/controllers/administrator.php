@@ -147,6 +147,7 @@ class Administrator extends CMS_AdminController
             $this->load->model('sorting_channel_model');
             $this->load->model('sorting_price_model');
             $this->load->model('products_tags_model');
+            $this->load->model('section_model');
 
             $data['js'] = '<script>$(function() {$( "#tabs" ).tabs();});</script>';
             $data['categories'] = $this->categories_product_model->Category_get_all_for_select_box();
@@ -156,6 +157,10 @@ class Administrator extends CMS_AdminController
             $data['price_list'] = $this->sorting_price_model->Category_get_all_for_select_box();
             $data['hightlightproducts'] = $this->products_model->Products_get_all_for_select_box();
             $data['tags'] = $this->products_tags_model->Tags_get_all_for_select_box();
+
+            $sections_list = $this->section_model->Section_get_all(0, 999, 'Publish = 1');
+            $data['sections_list'] = $sections_list->result_array();
+
             if (!$this->isAjax()) {
 
                 $this->form_validation->set_rules('prdTitle', 'Tên Sản Phẩm', 'trim|required');
@@ -202,10 +207,14 @@ class Administrator extends CMS_AdminController
                 $this->load->model('products_model');
                 $this->load->model('images_product_model');
                 $this->load->model('products_tags_model');
+                $this->load->model('section_model');
+
 
                 $data['js'] = '<script>$(function() {$( "#tabs" ).tabs();});</script>';
 
                 $product = $this->products_model->Products_get_by_id($prdid);
+                $sections_list = $this->section_model->Section_get_all(0, 999, 'Publish = 1');
+                $data['sections_list'] = $sections_list->result_array();
                 $data['product'] = $product->row_array();
 
                 if (count($data['product']) <= 0) show_404();
@@ -219,6 +228,9 @@ class Administrator extends CMS_AdminController
                 $data['res_list'] = $this->sorting_res_model->Category_get_all_for_select_box();
                 $data['channel_list'] = $this->sorting_channel_model->Category_get_all_for_select_box();
                 $data['price_list'] = $this->sorting_price_model->Category_get_all_for_select_box();
+
+                $this->load->model('sections_products_pivot_model');
+                $data['sections_by_product_id'] = $this->sections_products_pivot_model->list_by_product_id($prdid);
                 // thuc hien khi form edit product duoc submit len server
                 if (!$this->isAjax()) {
 
@@ -233,7 +245,6 @@ class Administrator extends CMS_AdminController
                         $this->load->view('includes/footer');
 
                     } else {
-
                         if ($this->products_model->Products_update($prdid)) {
                             redirect($this->getUrl());
 
@@ -359,13 +370,7 @@ class Administrator extends CMS_AdminController
                     $this->load->view('includes/footer');
 
                 } else {
-
-                    if ($this->products_model->Products_fast_insert()) {
-                        redirect(base_url() . "administrator/products");
-                    } else {
                         echo "fail";
-                    }
-
                 }
             } else {
                 $this->load->view('includes/header', $data);

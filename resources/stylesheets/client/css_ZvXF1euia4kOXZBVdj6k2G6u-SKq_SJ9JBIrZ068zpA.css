@@ -1396,9 +1396,14 @@ a.tim-kiem-nang-cao i {
 	border: none;
 }
 .du-an-home-item .pagination, .du-an-home-item .pagination-ajax{
-	width: 100%;
 	clear: both;
 	text-align: center;
+	padding: 5px 0;
+	color: white;
+	margin: 0 auto;
+	width: 400px;
+	background-color: #90c27e;
+	display: block;
 }
 .du-an-home-item .pager-view ul li.pager-current, .pagination>.active>a,.pagination>.active>a,
 .pagination>.active>a:focus, .pagination>.active>a:hover,
