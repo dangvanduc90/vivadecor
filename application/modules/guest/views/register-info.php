@@ -107,21 +107,21 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email</label>
                         <input type="email" class="form-control" id="exampleInputEmail1" name="Email" placeholder="nguyen@gmail.com"
-<!--                               required-->
+                               required
                         >
                         <?= form_error('Email') ?>
                     </div>
                     <div class="form-group">
                         <label for="name">Họ tên</label>
                         <input type="text" class="form-control" id="name" name="Name" placeholder="Nguyễn Văn A"
-<!--                               required-->
+                               required
                         >
                         <?= form_error('Name') ?>
                     </div>
                     <div class="form-group">
                         <label for="name">Số điện thoại</label>
                         <input type="text" class="form-control" id="phone_number" name="Phone" placeholder="0989307292"
-<!--                               maxlength="11" minlength="9" required-->
+                               maxlength="11" minlength="9" required
                         >
                         <?= form_error('Phone') ?>
                     </div>
