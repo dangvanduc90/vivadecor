@@ -145,8 +145,8 @@ nav.menu-main .tree li a {
 }
 nav.menu-main .tree li {
 	float: left;
-	padding-left: 8px;
-	padding-right: 8px;
+	padding-left: 7px;
+	padding-right: 7px;
 	padding-top: 7px;
 	padding-bottom: 7px;
 	border-right: 1px solid white;
