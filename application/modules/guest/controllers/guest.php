@@ -1,4 +1,5 @@
 <?php
+
 class Guest extends CMS_BaseController
 {
 
@@ -12,16 +13,19 @@ class Guest extends CMS_BaseController
     {
         echo "amp site";
     }
+
     function error_404()
     {
         $data = $this->main_model->general();
         $this->output->set_status_header('404');
         $this->load->view('guest/error_404', $data);
     }
+
     function error_404_redirect()
     {
         redirect('error-404.html');
     }
+
     function trang_chu($message = false)
     {
         global $lang;
@@ -63,8 +67,10 @@ class Guest extends CMS_BaseController
 //        die;
         if ($data['productsListBySection']) {
             foreach ($data['productsListBySection'] as $section) {
-                foreach ($section['products'] as $value) {
-                    $value->Description = $this->trim_text($value->Description, 150);
+                foreach ($section['products'] as $key => $value) {
+                    if ($value) {
+                        $value->Description = $this->trim_text($value->Description, 150);
+                    }
                 }
             }
         }
@@ -934,6 +940,7 @@ class Guest extends CMS_BaseController
             $this->load->view('guest/main_tag_products.php', $data);
         }
     }
+
     function cam_on()
     {
         $data = $this->main_model->general();
@@ -952,6 +959,7 @@ class Guest extends CMS_BaseController
             redirect(base_url());
 
     }
+
     public function register_info()
     {
         $data = $this->main_model->general();
@@ -973,14 +981,15 @@ class Guest extends CMS_BaseController
                 $this->email->from($this->config->item('webmaster_email', 'tank_auth'), $this->config->item('website_name', 'tank_auth'));
                 $this->email->to($this->input->post('Email'));
                 $this->email->subject('Đăng ký thông tin liên hệ trên ' . base_url() . ' thành công');
-                $this->email->message($this->load->view('email/'.$type.'-html', $dataEmail, TRUE));
-                $this->email->set_alt_message($this->load->view('email/'.$type.'-txt', $dataEmail, TRUE));
+                $this->email->message($this->load->view('email/' . $type . '-html', $dataEmail, TRUE));
+                $this->email->set_alt_message($this->load->view('email/' . $type . '-txt', $dataEmail, TRUE));
                 $this->email->send();
                 $data['message'] = $result ? 'Cám ơn bạn đã gửi thông tin đăng ký, nhân viên tư vấn của vivadecor sẽ liên hệ với bạn ngay.' : 'Gửi thông tin liên hệ thất bại';
             }
         }
         $this->load->view('register-info', $data);
     }
+
     function trim_text($input, $length, $ellipses = true, $strip_tag = true, $strip_style = true)
     {
         //strip tags, if desired
@@ -1017,6 +1026,7 @@ class Guest extends CMS_BaseController
         $xml_file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/sitemap.xml");
         echo $xml_file;
     }
+
     function sitemap_index()
     {
         // header("Content-Type: text/xml;charset=iso-8859-1");
@@ -1025,6 +1035,7 @@ class Guest extends CMS_BaseController
         $xml_file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/sitemap_index.xml");
         echo $xml_file;
     }
+
     function sitemap_category()
     {
         // header("Content-Type: text/xml;charset=iso-8859-1");
@@ -1033,6 +1044,7 @@ class Guest extends CMS_BaseController
         $xml_file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/sitemap_category.xml");
         echo $xml_file;
     }
+
     function sitemap_product()
     {
         // header("Content-Type: text/xml;charset=iso-8859-1");
@@ -1041,6 +1053,7 @@ class Guest extends CMS_BaseController
         $xml_file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/sitemap_product.xml");
         echo $xml_file;
     }
+
     function sitemap_news()
     {
         // header("Content-Type: text/xml;charset=iso-8859-1");
@@ -1049,6 +1062,7 @@ class Guest extends CMS_BaseController
         $xml_file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/sitemap_news.xml");
         echo $xml_file;
     }
+
     function sitemap_image()
     {
         // header("Content-Type: text/xml;charset=iso-8859-1");
@@ -1058,4 +1072,5 @@ class Guest extends CMS_BaseController
         echo $xml_file;
     }
 }
+
 ?>
