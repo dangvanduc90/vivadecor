@@ -23,7 +23,7 @@
     <meta name="Area" content="Hanoi" />
     <meta name="revisit-After" content="1 days" />
     <meta name="rating" content="general" />
-<!--Code Snippet-->
+<!--Code Snippet Sitelinks Searchbox | Google Developers -->
 <script type="application/ld+json">
 {
   "@context": "http://schema.org",
@@ -31,8 +31,8 @@
   "url": "<?= base_url(); ?>",
   "potentialAction": [{
 	"@type": "SearchAction",
-	"target": "<?= base_url(); ?>tim-kiem?t={search_term_string}",
-	"query-input": "required name=search_term_string"
+	"target": "<?= base_url(); ?>tim-kiem?t={vivadecor}",
+	"query-input": "required name={vivadecor}"
   }]
 }
 </script>
