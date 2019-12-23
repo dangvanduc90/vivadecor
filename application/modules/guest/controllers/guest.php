@@ -663,8 +663,8 @@ class Guest extends CMS_BaseController
             $this->breadcrumb->append_crumb($product->Title, base_url() . $product->Slug);
             // $data['SellerProducts'] = $this -> products_model -> Get_seller_products(6);
             // $data['latest_news'] = $this -> news_model -> Get_latest_news(3);
-            $data['signature'] = $this->news_model->News_get_by_cate_id(4);
-            $data['trend'] = $this->news_model->News_get_by_cate_id(3);
+            $data['signature'] = $this->news_model->News_get_by_cate_id(1);
+            $data['trend'] = $this->news_model->News_get_by_cate_id(2);
             // $data['hightlight'] = $this -> products_model -> Get_hightlight($product -> Hightlight);
             $data['tags'] = $this->products_model->get_product_tags($product->Tags);
             $data['relative'] = $this->products_model->Get_relative($current_category->CategoriesProductsID, $product->ProductsID);
